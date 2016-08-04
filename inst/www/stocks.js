@@ -73,17 +73,7 @@ Ext.onReady(function() {
             ]
         }
     ],
-    bbar: [
-        {
-            text: 'Actions sélectionnées',
-            handler: function() {
-                var checkbox = Ext.getCmp('checkbox3');
-                checkbox.setValue(true);
-            }
-        },
-        '-',
-        
-    ],
+    
     renderTo: Ext.getBody();
     
 });
