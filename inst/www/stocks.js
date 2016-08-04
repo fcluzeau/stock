@@ -6,38 +6,49 @@ Ext.onReady(function() {
   
   var today = new Date();
   
-  var treePanel = new Ext.tree.TreePanel({
-    id: 'tree-panel',
-    xtype: 'checkbox',
-    iconCls: 'chartIcon',
-    title: 'by Index',
-    region: 'center',
-    title: "stocks",
+ var treePanel=Ext.create('Ext.tree.Panel', {
     height: 300,
-    border: false,
-    autoScroll: true,
-    lazyRender:true,
-    animate: true,
-    containerScroll: true,
-    enableDrag: true,
-    dragConfig: {ddGroup: 'DragDrop' },
-    autoWidth: true,
-        
-    // tree-specific configs:
-    rootVisible: false,
-    lines: false,
-    singleExpand: true,
-    useArrows: true,
-      store: {
-        fields: ['Ticker', 'Company'],
-          data : [
-            {"Ticker":"AC.PA", "Company":"Accord"},
-           
-          ]          
-},
-   
-    }      
-  });  
+    renderTo: Ext.getBody(),
+    root: {
+        text: 'Root',
+        children: [
+            {text: 'Accord, leaf: true},
+            {text: 'Crédit Agricole', leaf: true},
+            {text: 'LVMH', leaf: true}
+        ]
+    },
+    tbar: [
+        {
+            text: 'Add',
+            handler: function() {
+                var tree = this.up('treepanel');
+                var selModel = tree.getSelectionModel();
+
+                // Could also use:
+                // var node = selModel.getSelection()[0];
+                var node = selModel.getLastSelected();
+
+                if (!node) {
+                    return;
+                }
+
+                // Feels like this should happen automatically
+                node.set('leaf', false);
+
+                node.appendChild({
+                    leaf: true,
+                    text: 'New Child'
+                });
+
+                // The tree lines won't join up without a refresh
+                tree.getView().refresh();
+
+                // Not strictly required but...
+                node.expand();
+            }
+        }
+    ]
+ });
     
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
     "items" :['->',{
