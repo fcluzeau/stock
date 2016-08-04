@@ -13,6 +13,7 @@ Ext.onReady(function() {
     region: 'center',
     title: "stocks",
     height: 250,
+    region: 'south',
     border: false,
     autoScroll: true,
     lazyRender:true,
