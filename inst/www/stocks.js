@@ -60,7 +60,7 @@ Ext.onReady(function() {
                     id        : 'AC.PA'
                 }, {
                     boxLabel  : 'Crédit Agricole',
-                    name      : 'ACA.PA,
+                    name      : 'ACA.PA',
                     checked : true,
                     inputValue: 'ACA.PA',
                     id        : 'ACA.PA'
