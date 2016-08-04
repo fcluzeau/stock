@@ -109,10 +109,17 @@ Ext.onReady(function() {
     ],
     renderTo: Ext.getBody();
     
-    
-   
-},
+    listeners:{ 
+  itemdblclick: {    var records = this.getView().getChecked(),
+      
+        
+          addWorkspace(records);
+        
+}
     }
+   
+
+  
     
 });
 
