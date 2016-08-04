@@ -55,20 +55,20 @@ Ext.onReady(function() {
             items: [
                 {
                     boxLabel  : 'Accord',
-                    name      : 'Accord',
+                    name      : 'AC.PA',
                     inputValue: 'AC.PA',
-                    id        : 'checkbox1'
+                    id        : 'AC.PA'
                 }, {
                     boxLabel  : 'Crédit Agricole',
-                    name      : 'Crédit Agricole',
+                    name      : 'ACA.PA,
                     checked : true,
                     inputValue: 'ACA.PA',
-                    id        : 'checkbox2'
+                    id        : 'ACA.PA'
                 }, {
                     boxLabel  : 'LVMH',
-                    name      : 'LVMH',
+                    name      : 'MC.PA',
                     inputValue: 'MC.PA',
-                    id        : 'checkbox3'
+                    id        : 'MC.PA'
                 }
             ]
         }
@@ -77,7 +77,7 @@ Ext.onReady(function() {
         {
             text: 'Actions sélectionnées',
             handler: function() {
-                var checkbox = Ext.getCmp('checkbox3');
+                var checkbox = Ext.getCmp('MC.PA');
                 checkbox.setValue(true);
             }
         },
@@ -85,9 +85,9 @@ Ext.onReady(function() {
         {
             text: 'Select All',
             handler: function() {
-                var checkbox1 = Ext.getCmp('checkbox1'),
-                    checkbox2 = Ext.getCmp('checkbox2'),
-                    checkbox3 = Ext.getCmp('checkbox3');
+                var checkbox1 = Ext.getCmp('AC.PA'),
+                    checkbox2 = Ext.getCmp('ACA.PA'),
+                    checkbox3 = Ext.getCmp('MC.PA');
 
                 checkbox1.setValue(true);
                 checkbox2.setValue(true);
@@ -97,9 +97,9 @@ Ext.onReady(function() {
         {
             text: 'Deselect All',
             handler: function() {
-                var checkbox1 = Ext.getCmp('checkbox1'),
-                    checkbox2 = Ext.getCmp('checkbox2'),
-                    checkbox3 = Ext.getCmp('checkbox3');
+                var checkbox1 = Ext.getCmp('AC.PA'),
+                    checkbox2 = Ext.getCmp('ACA.PA'),
+                    checkbox3 = Ext.getCmp('MC.PA');
 
                 checkbox1.setValue(false);
                 checkbox2.setValue(false);
@@ -107,7 +107,15 @@ Ext.onReady(function() {
             }
         }
     ],
-    renderTo: Ext.getBody()
+    renderTo: Ext.getBody();
+    
+    
+     
+    listeners:{ 
+      var records = this.getView().getChecked(),
+       Ext.getCmp("records").picker.setValue(data.portefeuille),
+    }
+    
 });
 
    
