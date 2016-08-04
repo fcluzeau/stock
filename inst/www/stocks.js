@@ -8,6 +8,7 @@ Ext.onReady(function() {
   
   var treePanel = new Ext.tree.TreePanel({
     id: 'tree-panel',
+    xtype: 'checkbox',
     iconCls: 'chartIcon',
     title: 'by Index',
     region: 'center',
