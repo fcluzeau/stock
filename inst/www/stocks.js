@@ -6,9 +6,52 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var treePanel=Ext.create('Ext.form.Panel', {
+   var treePanel = new Ext.tree.TreePanel({
+    id: 'tree-panel',
+    iconCls: 'chartIcon',
+    title: 'by Index',
+    region: 'center',
+    title: "stocks",
+    height: 250,
+    border: false,
+    autoScroll: true,
+    lazyRender:true,
+    animate: true,
+    containerScroll: true,
+    enableDrag: true,
+    dragConfig: {ddGroup: 'DragDrop' },
+    autoWidth: true,
+        
+    // tree-specific configs:
+    rootVisible: false,
+    lines: false,
+    singleExpand: true,
+    useArrows: true,
+    store: {
+      root: {
+        expanded: true
+      }
+    },
+    listeners: {
+      itemdblclick: function(s, r){
+        if(r.data.leaf){
+          addWorkspace(r.data.id.substring(7));
+        }
+      },
+      itemclick : function(s, r){
+        if(r.data.leaf){
+          var name = r.data.text.split(" - ");
+          var stock = name[0]
+          var company = name[1];
+          Ext.getCmp("details-panel").update('<div class="detaildiv"> <h3>' + company + '</h3> Yahoo Finance: <a target="_blank" href="http://finance.yahoo.com/q?s=' + stock + '">'+stock+'</a></div>');
+        }            
+      }
+    }      
+}); 
+  
+ var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 10,
-      height: 500,
+      height: 250,
     title      : 'Portefeuille',
     items: [
         {
@@ -175,15 +218,7 @@ Ext.onReady(function() {
     tbar: myToolbar  
   });
   
-  var detailsPanel = Ext.Panel({
-    id: 'details-panel',
-    split: true,      
-    height: 205,
-    minSize: 150,   
-    title: 'Details',
-    region: 'south',    
-    bodyStyle: 'padding-bottom:15px;background:#eee;'
-  });  
+  
 
   new Ext.Viewport({
     id : 'viewport',
@@ -198,7 +233,7 @@ Ext.onReady(function() {
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [ treePanel, detailsPanel ]
+      items : [ trePanel,treePanel ]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
