@@ -19,6 +19,30 @@ Ext.onReady(function() {
             {text: 'LVMH', leaf: true}
         ]
     },
+    
+    listeners: {
+    onCheckedNodesClick: function() {
+        var records = this.getView().getChecked(),
+            names = [];
+
+        Ext.Array.each(records, function(rec){
+            names.push(rec.get('text'));
+        });
+
+        Ext.MessageBox.show({
+            title: 'Selected Nodes',
+            msg: names.join('<br />'),
+            icon: Ext.MessageBox.INFO
+        });
+    }
+}
+     onBeforeCheckChange: function(record, checkedState, e) {
+        if (record.get('text') === 'Take a nap' && !checkedState) {
+            Ext.toast('No rest for the wicked!', null, 't');
+            return false;
+        }
+    },
+
     tbar: [
         {
             text: 'Add',
@@ -51,6 +75,7 @@ Ext.onReady(function() {
         }
     ]
  });
+});c
     
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
     "items" :['->',{
