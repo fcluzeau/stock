@@ -108,8 +108,7 @@ Ext.onReady(function() {
         }
     ],
     renderTo: Ext.getBody(),
-    var records = this.getView().getChecked(),
-    addWorkspace(records);
+    
 });
 
    
