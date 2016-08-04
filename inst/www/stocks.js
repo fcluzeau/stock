@@ -12,7 +12,7 @@ Ext.onReady(function() {
     title: 'by Index',
     region: 'center',
     title: "stocks",
-    height: 175,
+    height: 250,
     region: 'south',
     border: false,
     autoScroll: true,
@@ -45,7 +45,7 @@ Ext.onReady(function() {
   
  var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 10,
-      height: 175,
+      height: 250,
     title      : 'Portefeuille',
     items: [
         {
@@ -73,12 +73,43 @@ Ext.onReady(function() {
             ]
         }
     ],
-    
-    renderTo: Ext.getBody();
-    
+    bbar: [
+        {
+            text: 'Actions sélectionnées',
+            handler: function() {
+                var checkbox = Ext.getCmp('checkbox3');
+                checkbox.setValue(true);
+            }
+        },
+        '-',
+        {
+            text: 'Select All',
+            handler: function() {
+                var checkbox1 = Ext.getCmp('checkbox1'),
+                    checkbox2 = Ext.getCmp('checkbox2'),
+                    checkbox3 = Ext.getCmp('checkbox3');
+
+                checkbox1.setValue(true);
+                checkbox2.setValue(true);
+                checkbox3.setValue(true);
+            }
+        },
+        {
+            text: 'Deselect All',
+            handler: function() {
+                var checkbox1 = Ext.getCmp('checkbox1'),
+                    checkbox2 = Ext.getCmp('checkbox2'),
+                    checkbox3 = Ext.getCmp('checkbox3');
+
+                checkbox1.setValue(false);
+                checkbox2.setValue(false);
+                checkbox3.setValue(false);
+            }
+        }
+    ],
+    renderTo: Ext.getBody()
 });
-  
-   
+
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
     "items" :['->',{
@@ -343,6 +374,10 @@ Ext.onReady(function() {
       alert("Failed to load stocks: " + req.responseText);
     });
   }
+
+  //init
+  loadtree();
+});
 
   //init
   loadtree();
