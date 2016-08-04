@@ -9,7 +9,7 @@
 #> geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
 #' @export
 smoothplot <- function(ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
-if(length(ticker)>1){
+if(is.vector(ticker)){
 m<-dim(yahoodata(action[1], from, to))[1];
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
