@@ -112,7 +112,7 @@ Ext.onReady(function() {
     
      
     listeners:{ 
-      var records = this.getView().getChecked(),
+     itemdblclick: var records = this.getView().getChecked(),
        addWorkspace(records);
         }
 },
