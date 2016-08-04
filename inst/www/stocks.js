@@ -42,8 +42,8 @@ Ext.onReady(function() {
      
     }      
 }); 
-
-  var trePanel=Ext.create('Ext.form.Panel', {
+  
+ var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 7,
       height: 175,
     title      : 'Portefeuille',
@@ -110,10 +110,13 @@ Ext.onReady(function() {
     renderTo: Ext.getBody();
     
     
-
+     
+    listeners:{ 
+      var records = this.getView().getChecked(),
+       Ext.getCmp("records").picker.setValue(data.portefeuille),
+    }
     
 });
-
 
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
@@ -383,4 +386,3 @@ Ext.onReady(function() {
   //init
   loadtree();
 });
-
