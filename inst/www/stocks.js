@@ -12,7 +12,7 @@ Ext.onReady(function() {
     title: 'by Index',
     region: 'center',
     title: "stocks",
-    height: 250,
+    height: 175,
     region: 'south',
     border: false,
     autoScroll: true,
@@ -44,13 +44,13 @@ Ext.onReady(function() {
 }); 
   
  var trePanel=Ext.create('Ext.form.Panel', {
-    bodyPadding: 10,
-      height: 250,
+    bodyPadding: 7,
+      height: 175,
     title      : 'Portefeuille',
     items: [
         {
             xtype      : 'fieldcontainer',
-            fieldLabel : 'Toppings',
+            fieldLabel : 'CAC40',
             defaultType: 'checkboxfield',
             items: [
                 {
