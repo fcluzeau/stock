@@ -110,17 +110,7 @@ Ext.onReady(function() {
     renderTo: Ext.getBody();
     
     
-     
-    listeners:{ 
-      var records = this.getView().getChecked(),
-       Ext.getCmp("records").picker.setValue(data.portefeuille);
-       
-      itemdblclick: function(){
-        
-          addWorkspace();
-        
-},
-    }
+
     
 });
 
