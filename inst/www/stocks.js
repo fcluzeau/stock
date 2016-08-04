@@ -12,7 +12,7 @@ Ext.onReady(function() {
     root: {
         text: 'Root',
         children: [
-            {text: 'Accord, leaf: true},
+            {text: 'Accord', leaf: true},
             {text: 'Crédit Agricole', leaf: true},
             {text: 'LVMH', leaf: true}
         ]
