@@ -6,77 +6,74 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var treePanel=Ext.create('Ext.tree.Panel', {
-    extend: 'Ext.tree.Panel',
-    xtype: 'check-tree',
-    height: 500,
-    renderTo: Ext.getBody(),
-    root: {
-        text: 'Root',
-        children: [
-            {text: 'Accord', leaf: true},
-            {text: 'Crédit Agricole', leaf: true},
-            {text: 'LVMH', leaf: true}
-        ]
-    },
-    
-    listeners: {
-    onCheckedNodesClick: function() {
-        var records = this.getView().getChecked(),
-            names = [];
-
-        Ext.Array.each(records, function(rec){
-            names.push(rec.get('text'));
-        });
-
-        Ext.MessageBox.show({
-            title: 'Selected Nodes',
-            msg: names.join('<br />'),
-            icon: Ext.MessageBox.INFO
-        });
-    }
-}
-     onBeforeCheckChange: function(record, checkedState, e) {
-        if (record.get('text') === 'Take a nap' && !checkedState) {
-            Ext.toast('No rest for the wicked!', null, 't');
-            return false;
-        }
-    },
-
-    tbar: [
+ var treePanel=Ext.create('Ext.form.Panel', {
+    bodyPadding: 10,
+      height: 500,
+    title      : 'Portefeuille',
+    items: [
         {
-            text: 'Add',
-            handler: function() {
-                var tree = this.up('treepanel');
-                var selModel = tree.getSelectionModel();
-
-                // Could also use:
-                // var node = selModel.getSelection()[0];
-                var node = selModel.getLastSelected();
-
-                if (!node) {
-                    return;
+            xtype      : 'fieldcontainer',
+            fieldLabel : 'Toppings',
+            defaultType: 'checkboxfield',
+            items: [
+                {
+                    boxLabel  : 'Accord',
+                    name      : 'Accord',
+                    inputValue: 'AC.PA',
+                    id        : 'checkbox1'
+                }, {
+                    boxLabel  : 'Crédit Agricole',
+                    name      : 'Crédit Agricole',
+                    checked : true,
+                    inputValue: 'ACA.PA',
+                    id        : 'checkbox2'
+                }, {
+                    boxLabel  : 'LVMH',
+                    name      : 'LVMH',
+                    inputValue: 'MC.PA',
+                    id        : 'checkbox3'
                 }
+            ]
+        }
+    ],
+    bbar: [
+        {
+            text: 'Actions sélectionnées',
+            handler: function() {
+                var checkbox = Ext.getCmp('checkbox3');
+                checkbox.setValue(true);
+            }
+        },
+        '-',
+        {
+            text: 'Select All',
+            handler: function() {
+                var checkbox1 = Ext.getCmp('checkbox1'),
+                    checkbox2 = Ext.getCmp('checkbox2'),
+                    checkbox3 = Ext.getCmp('checkbox3');
 
-                // Feels like this should happen automatically
-                node.set('leaf', false);
+                checkbox1.setValue(true);
+                checkbox2.setValue(true);
+                checkbox3.setValue(true);
+            }
+        },
+        {
+            text: 'Deselect All',
+            handler: function() {
+                var checkbox1 = Ext.getCmp('checkbox1'),
+                    checkbox2 = Ext.getCmp('checkbox2'),
+                    checkbox3 = Ext.getCmp('checkbox3');
 
-                node.appendChild({
-                    leaf: true,
-                    text: 'New Child'
-                });
-
-                // The tree lines won't join up without a refresh
-                tree.getView().refresh();
-
-                // Not strictly required but...
-                node.expand();
+                checkbox1.setValue(false);
+                checkbox2.setValue(false);
+                checkbox3.setValue(false);
             }
         }
-    ]
- });
-});c
-    
+    ],
+    renderTo: Ext.getBody()
+});
+
+   
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
     "items" :['->',{
       xtype: "combobox",
