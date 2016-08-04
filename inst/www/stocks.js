@@ -113,7 +113,9 @@ Ext.onReady(function() {
      
     listeners:{ 
       var records = this.getView().getChecked(),
-       Ext.getCmp("records").picker.setValue(data.portefeuille),
+       addWorkspace(records);
+        }
+},
     }
     
 });
