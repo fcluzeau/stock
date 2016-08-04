@@ -379,6 +379,3 @@ Ext.onReady(function() {
   loadtree();
 });
 
-  //init
-  loadtree();
-});
