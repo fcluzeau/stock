@@ -1,5 +1,5 @@
 listbyindustry <- function(){
-  newtable <- with(stocktable, data.frame(id=paste0("symbol_", Ticker), text=paste(Ticker, "-", Company), leaf= FALSE, Country=Country, Industry=Industry, Sector=Sector));
+  newtable <- with(stocktable, data.frame(id=paste0("symbol_", Ticker), text=paste(Ticker, "-", Company), leaf= TRUE, Country=Country, Industry=Industry, Sector=Sector));
   mydata <- splitIntoTree(newtable, "Country");
   mydata$children <- lapply(mydata$children, splitIntoTree, f="Industry", out=c("id", "text", "leaf"));
   invisible(list("text"=".", children=mydata))
