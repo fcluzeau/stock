@@ -7,7 +7,7 @@ Ext.onReady(function() {
   var today = new Date();
   
  var treePanel=Ext.create('Ext.tree.Panel', {
-    height: 300,
+    height: 500,
     renderTo: Ext.getBody(),
     root: {
         text: 'Root',
