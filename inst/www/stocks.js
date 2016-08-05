@@ -181,9 +181,9 @@ Ext.onReady(function() {
         iconCls: 'chartIcon'
 },{
         xtype: "button",
-        id: "KurtosisBtn",
+        id: "PortefeuilleBtn",
         enableToggle: true,
-        text: "Kurtosis",
+        text: "Portefeuille",
         iconCls: 'chartIcon'
 }]
   });
@@ -267,8 +267,8 @@ Ext.onReady(function() {
     loadplot();
 });
 
- Ext.getCmp("KurtosisBtn").on("click", function(){
-   
+ Ext.getCmp("PortefeuilleBtn").on("click", function(){
+    var portefeuille = trePanel.getChecked('id');
     loadplot();
 });
  
@@ -288,7 +288,7 @@ Ext.onReady(function() {
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
         skewness : Ext.getCmp("skewnessBtn").pressed,
-        kurtosis : Ext.getCmp("kurtosisBtn").pressed,
+        portefeuille : Ext.getCmp("PortefeuilleBtn").pressed,
         start : Ext.getCmp("startdate").picker.getValue(),
         end : Ext.getCmp("enddate").picker.getValue()
        }
@@ -306,7 +306,7 @@ Ext.onReady(function() {
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
       Ext.getCmp("skewnessBtn").toggle(data.skewness);
-      Ext.getCmp("kurtosisBtn").toggle(data.kurtosis);
+      Ext.getCmp("PortefeuilleBtn").toggle(data.portefeuille);
       updatestart(data.start);
       updateend(data.end);
     }
@@ -322,7 +322,7 @@ Ext.onReady(function() {
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
     var variance = Ext.getCmp("varianceBtn").pressed;
     var skewness = Ext.getCmp("skewnessBtn").pressed;
-    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
+    var portefeuille = Ext.getCmp("PortefeuilleBtn").pressed;
     
     //don't plot help tab
     if(symbol == "Help"){
@@ -334,12 +334,12 @@ Ext.onReady(function() {
       start: from,
       end: to,
       type: type,
+      portefeuille: portefeuille,
       current: current    
     }  
     
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
-    var portefeuille = trePanel.getChecked('id');
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       ticker : symbol, 
       from : datetostring(from), 
