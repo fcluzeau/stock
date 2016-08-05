@@ -10,7 +10,7 @@ Ext.onReady(function() {
   
  var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 10,
-      height: 250,
+      
       width: 250,
     title      : 'Portefeuille',
     items: [
@@ -86,10 +86,9 @@ Ext.onReady(function() {
       editable: false,
         store: {
         fields: ['fun', 'name'],
-          data : [
-           
-            {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
+          data : {
             {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
+             {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
           ]          
         },
         queryMode: 'local',
@@ -256,22 +255,5 @@ Ext.onReady(function() {
     return yyyy + "-" + mm + "-" + dd;    
   }
   
-  //this function gets a list of stocks to populate the tree panel
-  function loadtree(){
-    var req = ocpu.rpc("listbyindustry", {}, function(data){
-      Ext.getCmp("tree-panel").getStore().setProxy({
-        type : "memory",
-        data : data,
-        reader : {
-          type: "json"
-        }
-      });
-      Ext.getCmp("tree-panel").getStore().load();
-    }).fail(function(){
-      alert("Failed to load stocks: " + req.responseText);
-    });
-  }
-
-  //init
-  loadtree();
+  
 });
