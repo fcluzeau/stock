@@ -183,7 +183,7 @@ Ext.onReady(function() {
         xtype: "button",
         id: "KurtosisBtn",
         enableToggle: true,
-        text: "Kurtosis"",
+        text: "Kurtosis,
         iconCls: 'chartIcon'
 }]
   });
