@@ -22,6 +22,26 @@ Ext.onReady(function() {
     enableDrag: true,
     dragConfig: {ddGroup: 'DragDrop' },
     autoWidth: true,
+    dockedItems: [{
+            xtype: 'toolbar',
+            items: {
+                text: 'Get checked nodes',
+                handler: function(){
+                    var records = tree.getView().getChecked(),
+                        names = [];
+                    
+                    Ext.Array.each(records, function(rec){
+                        names.push(rec.get('text'));
+                    });
+                    
+                    Ext.MessageBox.show({
+                        title: 'Selected Nodes',
+                        msg: names.join('<br />'),
+                        icon: Ext.MessageBox.INFO
+                    });
+                }
+            }
+        }],
         
     // tree-specific configs:
     rootVisible: false,
@@ -44,74 +64,6 @@ Ext.onReady(function() {
 }); 
 
  
-  
- var trePanel=Ext.create('Ext.form.Panel', {
-    bodyPadding: 10,
-      height: 250,
-    title      : 'Portefeuille',
-    items: [
-        {
-            xtype      : 'fieldcontainer',
-            fieldLabel : 'Toppings',
-            defaultType: 'checkboxfield',
-            items: [
-                {
-                    boxLabel  : 'Accord',
-                    name      : 'Accord',
-                    inputValue: 'AC.PA',
-                    id        : 'checkbox1'
-                }, {
-                    boxLabel  : 'Crédit Agricole',
-                    name      : 'Crédit Agricole',
-                    checked : true,
-                    inputValue: 'ACA.PA',
-                    id        : 'checkbox2'
-                }, {
-                    boxLabel  : 'LVMH',
-                    name      : 'LVMH',
-                    inputValue: 'MC.PA',
-                    id        : 'checkbox3'
-                }
-            ]
-        }
-    ],
-    bbar: [
-        {
-            text: 'Actions sélectionnées',
-            handler: function() {
-                var checkbox = Ext.getCmp('checkbox3');
-                checkbox.setValue(true);
-            }
-        },
-        '-',
-        {
-            text: 'Select All',
-            handler: function() {
-                var checkbox1 = Ext.getCmp('checkbox1'),
-                    checkbox2 = Ext.getCmp('checkbox2'),
-                    checkbox3 = Ext.getCmp('checkbox3');
-
-                checkbox1.setValue(true);
-                checkbox2.setValue(true);
-                checkbox3.setValue(true);
-            }
-        },
-        {
-            text: 'Deselect All',
-            handler: function() {
-                var checkbox1 = Ext.getCmp('checkbox1'),
-                    checkbox2 = Ext.getCmp('checkbox2'),
-                    checkbox3 = Ext.getCmp('checkbox3');
-
-                checkbox1.setValue(false);
-                checkbox2.setValue(false);
-                checkbox3.setValue(false);
-            }
-        }
-    ],
-    renderTo: Ext.getBody(),
-    
-});
 
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
