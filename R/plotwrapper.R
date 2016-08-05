@@ -19,8 +19,8 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		plotDensity = plotDensity(ticker, from, to),
 		getPlotCapitalGain = getPlotCapitalGain(ticker, from, to),
 		densityGain = densityGain(ticker, from, to),
-		plotDensityPortefeuilleByShare = plotDensityPortefeuilleByShare(from,to),
-		getPortefeuilleValue = getPortefeuilleValue(from, to),
+		plotDensityPortefeuilleByShare = plotDensityPortefeuilleByShare(portefeuille, from,to),
+		getPortefeuilleValue = getPortefeuilleValue(portefeuille, from, to),
 		stop("Unknown plot type:", type)
 	);
 	if(type=="smoothplot"){myplot}
