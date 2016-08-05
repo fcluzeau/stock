@@ -338,11 +338,13 @@ Ext.onReady(function() {
     
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
+    var portefeuille = treepanel.getChecked('id');
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       ticker : symbol, 
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
+      portefeuille : portefeuille,
       current : current,
       moyenne : moyenne,
       variance : variance,
