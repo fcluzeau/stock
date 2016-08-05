@@ -3,6 +3,12 @@ Ext.Loader.setConfig({
 });
 
 Ext.onReady(function() {
+  Ext.require([
+    'Ext.tree.*',
+    'Ext.data.*',
+    'Ext.window.MessageBox'
+]);
+
   
   var today = new Date();
   
