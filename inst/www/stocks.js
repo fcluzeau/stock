@@ -57,18 +57,18 @@ Ext.onReady(function() {
                     boxLabel  : 'Accord',
                     name      : 'Accord',
                     inputValue: 'AC.PA',
-                    id        : 'AC.PA'
+                    id        : 'checkbox1'
                 }, {
                     boxLabel  : 'Crédit Agricole',
                     name      : 'Crédit Agricole',
                     checked : true,
                     inputValue: 'ACA.PA',
-                    id        : 'ACA.PA'
+                    id        : 'checkbox2'
                 }, {
                     boxLabel  : 'LVMH',
                     name      : 'LVMH',
                     inputValue: 'MC.PA',
-                    id        : 'MC.PA'
+                    id        : 'checkbox3'
                 }
             ]
         }
@@ -85,9 +85,9 @@ Ext.onReady(function() {
         {
             text: 'Select All',
             handler: function() {
-                var checkbox1 = Ext.getCmp('AC.PA'),
-                    checkbox2 = Ext.getCmp('ACA.PA'),
-                    checkbox3 = Ext.getCmp('MC.PA');
+                var checkbox1 = Ext.getCmp('checkbox1'),
+                    checkbox2 = Ext.getCmp('checkbox2'),
+                    checkbox3 = Ext.getCmp('checkbox3');
 
                 checkbox1.setValue(true);
                 checkbox2.setValue(true);
@@ -97,9 +97,9 @@ Ext.onReady(function() {
         {
             text: 'Deselect All',
             handler: function() {
-                var checkbox1 = Ext.getCmp('AC.PA'),
-                    checkbox2 = Ext.getCmp('ACA.PA'),
-                    checkbox3 = Ext.getCmp('MC.PA');
+                var checkbox1 = Ext.getCmp('checkbox1'),
+                    checkbox2 = Ext.getCmp('checkbox2'),
+                    checkbox3 = Ext.getCmp('checkbox3');
 
                 checkbox1.setValue(false);
                 checkbox2.setValue(false);
@@ -181,9 +181,9 @@ Ext.onReady(function() {
         iconCls: 'chartIcon'
 },{
         xtype: "button",
-        id: "PortefeuilleBtn",
+        id: "kurtosisBtn",
         enableToggle: true,
-        text: "Portefeuille",
+        text: "Kurtosis",
         iconCls: 'chartIcon'
 }]
   });
@@ -267,8 +267,7 @@ Ext.onReady(function() {
     loadplot();
 });
 
- Ext.getCmp("PortefeuilleBtn").on("click", function(){
-    var portefeuille = trePanel.getChecked('id');
+ Ext.getCmp("kurtosisBtn").on("click", function(){
     loadplot();
 });
  
@@ -288,7 +287,7 @@ Ext.onReady(function() {
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
         skewness : Ext.getCmp("skewnessBtn").pressed,
-        portefeuille : Ext.getCmp("PortefeuilleBtn").pressed,
+        kurtosis : Ext.getCmp("kurtosisBtn").pressed,
         start : Ext.getCmp("startdate").picker.getValue(),
         end : Ext.getCmp("enddate").picker.getValue()
        }
@@ -306,7 +305,7 @@ Ext.onReady(function() {
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
       Ext.getCmp("skewnessBtn").toggle(data.skewness);
-      Ext.getCmp("PortefeuilleBtn").toggle(data.portefeuille);
+      Ext.getCmp("kurtosisBtn").toggle(data.kurtosis);
       updatestart(data.start);
       updateend(data.end);
     }
@@ -322,7 +321,7 @@ Ext.onReady(function() {
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
     var variance = Ext.getCmp("varianceBtn").pressed;
     var skewness = Ext.getCmp("skewnessBtn").pressed;
-    var portefeuille = Ext.getCmp("PortefeuilleBtn").pressed;
+    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
     
     //don't plot help tab
     if(symbol == "Help"){
@@ -334,7 +333,6 @@ Ext.onReady(function() {
       start: from,
       end: to,
       type: type,
-      portefeuille: portefeuille,
       current: current    
     }  
     
@@ -345,7 +343,6 @@ Ext.onReady(function() {
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
-      portefeuille : portefeuille,
       current : current,
       moyenne : moyenne,
       variance : variance,
@@ -382,4 +379,3 @@ Ext.onReady(function() {
   //init
   loadtree();
 });
-
