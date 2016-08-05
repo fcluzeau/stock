@@ -7,7 +7,6 @@ Ext.onReady(function() {
   var today = new Date();
   
    var treePanel = new Ext.tree.TreePanel({
-     selModel  = tree.getSelectionModel();
     id: 'tree-panel',
     iconCls: 'chartIcon',
     title: 'by Index',
