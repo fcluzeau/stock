@@ -7,6 +7,7 @@ Ext.onReady(function() {
   var today = new Date();
   
    var treePanel = new Ext.tree.TreePanel({
+     selModel  = TreePanel.getSelectionModel();
     id: 'tree-panel',
     iconCls: 'chartIcon',
     title: 'by Index',
@@ -42,6 +43,8 @@ Ext.onReady(function() {
      
     }      
 }); 
+
+ 
   
  var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 10,
