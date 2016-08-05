@@ -2,16 +2,11 @@ Ext.Loader.setConfig({
   disableCaching: false
 });
 
-Ext.onReady(function() {
-  
-  var today = new Date();
-  
-   
+
   
  var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 10,
-      
-      width: 250,
+      height: 250,
     title      : 'Portefeuille',
     items: [
         {
@@ -40,14 +35,6 @@ Ext.onReady(function() {
         }
     ],
     bbar: [
-        {
-            text: 'Actions sélectionnées',
-            handler: function() {
-                var checkbox = Ext.getCmp('checkbox3');
-                checkbox.setValue(true);
-            }
-        },
-        '-',
         {
             text: 'Select All',
             handler: function() {
@@ -78,17 +65,16 @@ Ext.onReady(function() {
 });
 
    
-   var portefeuille=trePanel.getChecked('id');
-   
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
     "items" :['->',{
       xtype: "combobox",
       editable: false,
         store: {
         fields: ['fun', 'name'],
-          data : {
-            {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
-             {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
+          data : [
+              {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
+              {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
+            
           ]          
         },
         queryMode: 'local',
@@ -117,7 +103,37 @@ Ext.onReady(function() {
           id: 'enddate',
           value: new Date()
         }
-      }]
+      },{
+        xtype: "button",
+        id: "currentBtn",
+        enableToggle: true,
+        text: "Valeur Actuelle",
+        iconCls: 'chartIcon'
+      },{
+        xtype: "button",
+        id: "moyenneBtn",
+        enableToggle: true,
+        text: "Moyenne",
+        iconCls: 'chartIcon'
+      },{
+        xtype: "button",
+        id: "varianceBtn",
+        enableToggle: true,
+        text: "Variance",
+        iconCls: 'chartIcon'
+},{
+        xtype: "button",
+        id: "skewnessBtn",
+        enableToggle: true,
+        text: "Skewness",
+        iconCls: 'chartIcon'
+},{
+        xtype: "button",
+        id: "kurtosisBtn",
+        enableToggle: true,
+        text: "Kurtosis",
+        iconCls: 'chartIcon'
+}]
   });
 
   var workspacePanel = new Ext.TabPanel({
@@ -160,7 +176,7 @@ Ext.onReady(function() {
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [trePanel]
+      items : [ trePanel]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
@@ -183,7 +199,25 @@ Ext.onReady(function() {
     loadplot();
   });  
   
- 
+  Ext.getCmp("currentBtn").on("click", function(){
+    loadplot();
+  });
+  
+    Ext.getCmp("moyenneBtn").on("click", function(){
+    loadplot();
+  });
+  
+   Ext.getCmp("varianceBtn").on("click", function(){
+    loadplot();
+});
+
+ Ext.getCmp("skewnessBtn").on("click", function(){
+    loadplot();
+});
+
+ Ext.getCmp("kurtosisBtn").on("click", function(){
+    loadplot();
+});
  
   Ext.getCmp("graphtype").on("select", function(){
     loadplot();
@@ -197,6 +231,11 @@ Ext.onReady(function() {
       border: false,
       data : {
         type : Ext.getCmp("graphtype").getValue(),
+        current : Ext.getCmp("currentBtn").pressed,
+        moyenne : Ext.getCmp("moyenneBtn").pressed,
+        variance : Ext.getCmp("varianceBtn").pressed,
+        skewness : Ext.getCmp("skewnessBtn").pressed,
+        kurtosis : Ext.getCmp("kurtosisBtn").pressed,
         start : Ext.getCmp("startdate").picker.getValue(),
         end : Ext.getCmp("enddate").picker.getValue()
        }
@@ -205,22 +244,32 @@ Ext.onReady(function() {
     }
   
   function updatemenu(){
-    var data = Ext.getCmp('workspace-panel').trePanel.getChecked('id');
+    var data = Ext.getCmp('workspace-panel').getActiveTab().data;
     if(data){
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
+      Ext.getCmp("currentBtn").toggle(data.current); 
+      Ext.getCmp("moyenneBtn").toggle(data.moyenne);
+      Ext.getCmp("varianceBtn").toggle(data.variance);
+      Ext.getCmp("skewnessBtn").toggle(data.skewness);
+      Ext.getCmp("kurtosisBtn").toggle(data.kurtosis);
       updatestart(data.start);
       updateend(data.end);
     }
   }
   
   function loadplot(){
-    var symbol = Ext.getCmp('workspace-panel').trePanel.getChecked('id');
+    var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
-    
+    var current = Ext.getCmp("currentBtn").pressed;
+    var gain = Ext.getCmp("currentBtn").pressed;
+    var moyenne = Ext.getCmp("moyenneBtn").pressed;
+    var variance = Ext.getCmp("varianceBtn").pressed;
+    var skewness = Ext.getCmp("skewnessBtn").pressed;
+    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
     
     //don't plot help tab
     if(symbol == "Help"){
@@ -228,11 +277,11 @@ Ext.onReady(function() {
     }
     
     //save settings in tab
-    Ext.getCmp('workspace-panel').rePanel.getChecked('id') = {
+    Ext.getCmp('workspace-panel').getActiveTab().data = {
       start: from,
       end: to,
       type: type,
-       
+        
     }  
     
     //request plot using OpenCPU library
@@ -242,7 +291,11 @@ Ext.onReady(function() {
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
-      
+      current : current,
+      moyenne : moyenne,
+      variance : variance,
+      skewness : skewness,
+      kurtosis : kurtosis,
     }).fail(function(){
       alert("Failed to plot stock: " + req.responseText)
     });
@@ -255,5 +308,5 @@ Ext.onReady(function() {
     return yyyy + "-" + mm + "-" + dd;    
   }
   
-  
+
 });
