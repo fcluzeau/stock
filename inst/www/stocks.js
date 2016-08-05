@@ -338,7 +338,7 @@ Ext.onReady(function() {
     
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
-    var portefeuille = treepanel.getChecked('id');
+    var portefeuille = trePanel.getChecked('id');
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       ticker : symbol, 
       from : datetostring(from), 
