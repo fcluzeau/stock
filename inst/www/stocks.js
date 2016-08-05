@@ -168,7 +168,7 @@ Ext.onReady(function() {
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [ trePanel,treePanel ]
+      items : [ treePanel ]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
