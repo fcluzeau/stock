@@ -1,15 +1,14 @@
-getPortefeuilleValue<-function( from = "2013-01-01", to=Sys.time()){
-action<-getPortefeuille()[,1];
-nombre<-getPortefeuille()[,2];
-m<-dim(yahoodata(action[1], from, to))[1];
+getPortefeuilleValue<-function(portefeuille=c("AC.PA","ACA.PA"), from = "2013-01-01", to=Sys.time()){
+
+m<-dim(yahoodata(portefeuille[1], from, to))[1];
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
 
-for(i in 1:length(action)){
-mydata <- yahoodata(action[i], from, to);
+for(i in 1:length(portefeuille)){
+mydata <- yahoodata(portefeuille[i], from, to);
 for(j in 1:dim(mydata)[1]){
 myporte[j,2]<-as.numeric(mydata$Close[j]);
-myporte[j,2]<-myporte[j,2]*as.numeric(nombre[i]);
+
 }
 }
 
