@@ -2,7 +2,46 @@ Ext.Loader.setConfig({
   disableCaching: false
 });
 
-
+Ext.onReady(function() {
+  
+  var today = new Date();
+  
+   var treePanel = new Ext.tree.TreePanel({
+    id: 'tree-panel',
+    iconCls: 'chartIcon',
+    title: 'by Index',
+    region: 'center',
+    title: "stocks",
+    height: 250,
+    region: 'south',
+    border: false,
+    autoScroll: true,
+    lazyRender:true,
+    animate: true,
+    containerScroll: true,
+    enableDrag: true,
+    dragConfig: {ddGroup: 'DragDrop' },
+    autoWidth: true,
+        
+    // tree-specific configs:
+    rootVisible: false,
+    lines: false,
+    singleExpand: true,
+    useArrows: true,
+    store: {
+      root: {
+        expanded: true
+      }
+    },
+    listeners: {
+      itemdblclick: function(s, r){
+        if(r.data.leaf){
+          addWorkspace(r.data.id.substring(7));
+        }
+      },
+     
+    }      
+}); 
   
  var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 10,
@@ -35,6 +74,14 @@ Ext.Loader.setConfig({
         }
     ],
     bbar: [
+        {
+            text: 'Actions sélectionnées',
+            handler: function() {
+                var checkbox = Ext.getCmp('checkbox3');
+                checkbox.setValue(true);
+            }
+        },
+        '-',
         {
             text: 'Select All',
             handler: function() {
@@ -72,9 +119,14 @@ Ext.Loader.setConfig({
         store: {
         fields: ['fun', 'name'],
           data : [
-              {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
-              {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
-            
+            {"fun":"smoothplot", "name":"ACTION: Smooth Plot"},
+            {"fun":"highlowplot", "name":"ACTION: High/Low Plot"},
+            {"fun":"areaplot", "name":"ACTION: Area Plot"},
+            {"fun":"plotDensity", "name":"ACTION: Densité"},
+            {"fun":"getPlotCapitalGain", "name":"ACTION: Plus-Value"},
+            {"fun":"densityGain", "name":"ACTION: Densité de la Plus-Value"},
+            {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
+            {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
           ]          
         },
         queryMode: 'local',
@@ -176,7 +228,7 @@ Ext.Loader.setConfig({
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [ trePanel]
+      items : [ trePanel,treePanel ]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
@@ -281,13 +333,13 @@ Ext.Loader.setConfig({
       start: from,
       end: to,
       type: type,
-        
+      current: current    
     }  
     
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
-      portefeuille : portefeuille, 
+      ticker : symbol, 
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
@@ -308,5 +360,22 @@ Ext.Loader.setConfig({
     return yyyy + "-" + mm + "-" + dd;    
   }
   
+  //this function gets a list of stocks to populate the tree panel
+  function loadtree(){
+    var req = ocpu.rpc("listbyindustry", {}, function(data){
+      Ext.getCmp("tree-panel").getStore().setProxy({
+        type : "memory",
+        data : data,
+        reader : {
+          type: "json"
+        }
+      });
+      Ext.getCmp("tree-panel").getStore().load();
+    }).fail(function(){
+      alert("Failed to load stocks: " + req.responseText);
+    });
+  }
 
+  //init
+  loadtree();
 });
