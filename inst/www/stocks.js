@@ -28,27 +28,7 @@ Ext.onReady(function() {
     enableDrag: true,
     dragConfig: {ddGroup: 'DragDrop' },
     autoWidth: true,
-    dockedItems: [{
-            xtype: 'toolbar',
-            items: {
-                text: 'Get checked nodes',
-                handler: function(){
-                    var records = tree.getView().getChecked(),
-                        names = [];
-                    
-                    Ext.Array.each(records, function(rec){
-                        names.push(rec.get('text'));
-                    });
-                    
-                    Ext.MessageBox.show({
-                        title: 'Selected Nodes',
-                        msg: names.join('<br />'),
-                        icon: Ext.MessageBox.INFO
-                    });
-                }
-            }
-        }],
-        
+    
     // tree-specific configs:
     rootVisible: false,
     lines: false,
