@@ -11,6 +11,7 @@ Ext.onReady(function() {
  var trePanel=Ext.create('Ext.form.Panel', {
     bodyPadding: 10,
       height: 250,
+      width: 100,
     title      : 'Portefeuille',
     items: [
         {
@@ -160,7 +161,7 @@ Ext.onReady(function() {
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [ trePanel]
+      items : [trePanel]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
