@@ -10,7 +10,7 @@
 #' @param current include the current price of this stock. TRUE/FALSE.
 #' @import ggplot2
 #' @export
-plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue"), ticker="GOOG", from="2013-01-01", to=Sys.time(), current=FALSE, moyenne=FALSE, variance=FALSE, skewness=FALSE, kurtosis=FALSE){
+plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue"), portefeuille=("AC.PA","ACA.PA"), ticker="GOOG", from="2013-01-01", to=Sys.time(), current=FALSE, moyenne=FALSE, variance=FALSE, skewness=FALSE, kurtosis=FALSE){
 	type <- match.arg(type);
 	myplot <- switch(type,
 		smoothplot = smoothplot(ticker, from, to),
@@ -19,7 +19,7 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		plotDensity = plotDensity(ticker, from, to),
 		getPlotCapitalGain = getPlotCapitalGain(ticker, from, to),
 		densityGain = densityGain(ticker, from, to),
-		plotDensityPortefeuilleByShare = plotDensityPortefeuilleByShare(portefeuille, from,to),
+		plotDensityPortefeuilleByShare = plotDensityPortefeuilleByShare( from,to),
 		getPortefeuilleValue = getPortefeuilleValue(portefeuille, from, to),
 		stop("Unknown plot type:", type)
 	);
