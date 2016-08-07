@@ -20,6 +20,7 @@ Ext.onReady(function() {
     title: 'Portefeuille',
      height: 105,
     bodyPadding: 10,
+    iconCls: 'chartIcon',
     border: false,
     autoScroll: true,
     lazyRender:true,
@@ -28,6 +29,8 @@ Ext.onReady(function() {
     enableDrag: true,
     dragConfig: {ddGroup: 'DragDrop' },
     autoWidth: true,
+    region: 'south',
+    useArrows: true,
     defaults: {
         anchor: '100%',
         labelWidth: 20
@@ -59,7 +62,6 @@ Ext.onReady(function() {
     region: 'center',
     title: "stocks",
     height: 450,
-    region: 'south',
     border: false,
     autoScroll: true,
     lazyRender:true,
