@@ -18,11 +18,12 @@ Ext.onReady(function() {
     controller: 'form-fieldcontainer',
 
     title: 'Portefeuille',
-    width: 600,
+     height: 205,
+    minSize: 150,
     bodyPadding: 10,
     defaults: {
         anchor: '100%',
-        labelWidth: 100
+        labelWidth: 50
     },
     items: [{
         xtype: 'textfield',
@@ -51,7 +52,7 @@ Ext.onReady(function() {
     title: 'by Index',
     region: 'center',
     title: "stocks",
-    height: 250,
+    height: 350,
     region: 'south',
     border: false,
     autoScroll: true,
