@@ -23,7 +23,7 @@ Ext.onReady(function() {
     bodyPadding: 10,
     defaults: {
         anchor: '100%',
-        labelWidth: 50
+        labelWidth: 20
     },
     items: [{
         xtype: 'textfield',
@@ -31,7 +31,7 @@ Ext.onReady(function() {
         fieldLabel: 'Actions du portefeuille',
         vtype: 'email',
         msgTarget: 'side',
-        allowBlank: false
+        allowBlank: true
     }],
 
     buttons: [{
