@@ -21,6 +21,7 @@ Ext.onReady(function() {
      height: 205,
     minSize: 200,
     bodyPadding: 10,
+    autoWidth: true,
     defaults: {
         anchor: '100%',
         labelWidth: 20
