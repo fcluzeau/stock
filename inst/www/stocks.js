@@ -19,7 +19,7 @@ Ext.onReady(function() {
 
     title: 'Portefeuille',
      height: 205,
-    minSize: 150,
+    minSize: 200,
     bodyPadding: 10,
     defaults: {
         anchor: '100%',
