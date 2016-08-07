@@ -12,6 +12,39 @@ Ext.onReady(function() {
   
   var today = new Date();
   
+ var mess = Ext.define('KitchenSink.view.form.FieldContainer', {
+    extend: 'Ext.form.Panel',
+    xtype: 'form-fieldcontainer',
+    controller: 'form-fieldcontainer',
+
+    title: 'Portefeuille',
+    width: 600,
+    bodyPadding: 10,
+    defaults: {
+        anchor: '100%',
+        labelWidth: 100
+    },
+    items: [{
+        xtype: 'textfield',
+        name: 'action',
+        fieldLabel: 'Actions du portefeuille',
+        vtype: 'email',
+        msgTarget: 'side',
+        allowBlank: false
+    }],
+
+    buttons: [{
+        text   : 'Load test data',
+        handler: 'onLoadClick'
+    }, {
+        text   : 'Save',
+        handler: 'onSaveClick'
+    }, {
+        text   : 'Reset',
+        handler: 'onResetClick'
+    }]
+});
+  
    var treePanel = new Ext.tree.TreePanel({
     id: 'tree-panel',
     iconCls: 'chartIcon',
@@ -168,7 +201,7 @@ Ext.onReady(function() {
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [ treePanel ]
+      items : [ mess, treePanel ]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
