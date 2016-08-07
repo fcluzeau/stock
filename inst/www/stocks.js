@@ -18,7 +18,7 @@ Ext.onReady(function() {
     controller: 'form-fieldcontainer',
 
     title: 'Portefeuille',
-     height: 105,
+     height: 205,
     bodyPadding: 10,
     iconCls: 'chartIcon',
     border: false,
@@ -61,7 +61,7 @@ Ext.onReady(function() {
     title: 'by Index',
     region: 'center',
     title: "stocks",
-    height: 450,
+    height: 350,
     border: false,
     autoScroll: true,
     lazyRender:true,
