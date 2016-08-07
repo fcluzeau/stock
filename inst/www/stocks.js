@@ -1,50 +1,84 @@
-Ext.Loader.setConfig({
-  disableCaching: false
-});
-
-Ext.onReady(function() {
-  Ext.require([
+Ext.require([
     'Ext.tree.*',
     'Ext.data.*',
+    'Ext.layout.container.HBox',
     'Ext.window.MessageBox'
 ]);
 
+Ext.define('Item', {
+    extend: 'Ext.data.Model',
+    fields: ['text', 'canDropOnFirst', 'canDropOnSecond']
+})
+
+Ext.onReady(function() {
+ 
   
   var today = new Date();
   
-   var treePanel = new Ext.tree.TreePanel({
-    id: 'tree-panel',
-    iconCls: 'chartIcon',
-    title: 'by Index',
-    region: 'center',
-    title: "stocks",
-    height: 250,
-    region: 'south',
-    border: false,
-    autoScroll: true,
-    lazyRender:true,
-    animate: true,
-    containerScroll: true,
-    enableDrag: true,
-    dragConfig: {ddGroup: 'DragDrop' },
-    autoWidth: true,
-    
-    // tree-specific configs:
-    rootVisible: false,
-    lines: false,
-    singleExpand: true,
-    useArrows: true,
-    store: {
+    var store2 = new Ext.data.TreeStore({
+        model: 'Item',
+        root: {
+            text: 'Portefeuille',
+            expanded: true,
+            children: [{
+                text: 'Portefeuille',
+                children: [],
+                expanded: true
+            }]
+        }
+    });
+
+   var treePanel = new Ext.panel.Panel({
+        renderTo: 'tree-div',
+        width: 300,
+        height: 200,
+        layout: {
+            type: 'hbox',
+            align: 'stretch'
+        },
+        defaultType: 'treepanel',
+        defaults: {
+            rootVisible: false,
+            flex: 1
+        },
+        items: [{
+            title: 'Source',
+            store: {
       root: {
         expanded: true
       }
     },
-    listeners: {
-      itemdblclick: function(s, r){
-        if(r.data.leaf){
-          addWorkspace(r.data.id.substring(7));
-        }
-      },
+            viewConfig: {
+                plugins: {
+                   ptype: 'treeviewdragdrop',
+                   enableDrag: true,
+                   enableDrop: false
+                }
+            }
+        }, {
+            title: 'Destination',
+            store: store2, 
+            viewConfig: {
+                plugins: {
+                   ptype: 'treeviewdragdrop',
+                   enableDrag: false,
+                   enableDrop: true,
+                   appendOnly: true
+                },
+                listeners: {
+                    nodedragover: function(targetNode, position, dragData){
+                        var rec = dragData.records[0],
+                            isFirst = targetNode.isFirst(),
+                            canDropFirst = rec.get('canDropOnFirst'),
+                            canDropSecond = rec.get('canDropOnSecond');
+                            
+                        return isFirst ? canDropFirst : canDropSecond;
+                         addWorkspace(store2);
+                    }
+                }
+            }
+        }]
+    });
      
     }      
 }); 
