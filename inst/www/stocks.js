@@ -29,8 +29,7 @@ Ext.onReady(function() {
         xtype: 'textfield',
         name: 'action',
         fieldLabel: 'Actions du portefeuille',
-        vtype: 'email',
-        msgTarget: 'side',
+        msgTarget: 'under',
         allowBlank: true
     }],
 
