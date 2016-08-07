@@ -1,11 +1,11 @@
-getPortefeuilleValue<-function(portefeuille=c("AC.PA","ACA.PA"), from = "2013-01-01", to=Sys.time()){
+getPortefeuilleValue<-function(ticker=c("GOOG","ACA.PA"), from = "2013-01-01", to=Sys.time()){
 
-m<-dim(yahoodata(portefeuille[1], from, to))[1];
+m<-dim(yahoodata(ticker[1], from, to))[1];
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
 
-for(i in 1:length(portefeuille)){
-mydata <- yahoodata(portefeuille[i], from, to);
+for(i in 1:length(ticker)){
+mydata <- yahoodata(ticker[i], from, to);
 for(j in 1:dim(mydata)[1]){
 myporte[j,2]<-as.numeric(mydata$Close[j]);
 
