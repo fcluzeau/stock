@@ -73,7 +73,7 @@ Ext.onReady(function() {
                             canDropSecond = rec.get('canDropOnSecond');
                             
                         return isFirst ? canDropFirst : canDropSecond;
-                         addWorkspace(store2.data.id.substring(7));
+                         addWorkspace(store2.rec.id.substring(7));
                     }
                 }
             }
@@ -123,37 +123,7 @@ Ext.onReady(function() {
           id: 'enddate',
           value: new Date()
         }
-      },{
-        xtype: "button",
-        id: "currentBtn",
-        enableToggle: true,
-        text: "Valeur Actuelle",
-        iconCls: 'chartIcon'
-      },{
-        xtype: "button",
-        id: "moyenneBtn",
-        enableToggle: true,
-        text: "Moyenne",
-        iconCls: 'chartIcon'
-      },{
-        xtype: "button",
-        id: "varianceBtn",
-        enableToggle: true,
-        text: "Variance",
-        iconCls: 'chartIcon'
-},{
-        xtype: "button",
-        id: "skewnessBtn",
-        enableToggle: true,
-        text: "Skewness",
-        iconCls: 'chartIcon'
-},{
-        xtype: "button",
-        id: "kurtosisBtn",
-        enableToggle: true,
-        text: "Kurtosis",
-        iconCls: 'chartIcon'
-}]
+      }]
   });
 
   var workspacePanel = new Ext.TabPanel({
@@ -239,8 +209,8 @@ Ext.onReady(function() {
     }
   
   function updatemenu(){
-    var data = Ext.getCmp('workspace-panel').getActiveTab().data;
-    if(data){
+    
+  {
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
@@ -250,16 +220,12 @@ Ext.onReady(function() {
   }
   
   function loadplot(){
-    var portefeuille = Ext.getCmp('workspace-panel').getActiveTab().title;
+   
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
     
     
-    //don't plot help tab
-    if(symbol == "Help"){
-      return;
-    }
     
     //save settings in tab
     Ext.getCmp('workspace-panel').getActiveTab().data = {
@@ -270,7 +236,7 @@ Ext.onReady(function() {
     }  
     
     //request plot using OpenCPU library
-    var idportefeuille = Ext.getCmp('workspace-panel').getActiveTab().el.id;
+    var idportefeuille = Ext.getCmp('workspace-panel').getActiveTab().store2;
     var req = $("#" + idportefeuille + "-innerCt").rplot("plotwrapper", {
       ticker : portefeuille, 
       from : datetostring(from), 
