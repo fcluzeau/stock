@@ -11,6 +11,7 @@ Ext.onReady(function() {
 
   
   var today = new Date();
+  var portefeuille = Ext.getCmp('action').getValue();
   
  var mess = Ext.define('KitchenSink.view.form.FieldContainer', {
     extend: 'Ext.form.Panel',
@@ -322,7 +323,7 @@ Ext.onReady(function() {
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       ticker : symbol, 
-      portefeuille : Ext.getCmp('action').getValue();
+      portefeuille : portefeuille;
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
