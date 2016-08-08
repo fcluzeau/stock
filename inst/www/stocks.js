@@ -303,7 +303,7 @@ Ext.onReady(function() {
     var skewness = Ext.getCmp("skewnessBtn").pressed;
     var kurtosis = Ext.getCmp("kurtosisBtn").pressed;}
     else{
-      var portefeuille = myForm.down('textfield[name=portefeuille]').getValue();
+      var portefeuille = Portefeuille.down('textfield[name=portefeuille]').getValue();
       var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
