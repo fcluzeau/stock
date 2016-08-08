@@ -12,7 +12,7 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var mess = new Ext.create('Ext.form.Panel', {
+ var mess = Ext.define('KitchenSink.view.form.FieldContainer', {
     extend: 'Ext.form.Panel',
     xtype: 'form-fieldcontainer',
     controller: 'form-fieldcontainer',
@@ -37,13 +37,16 @@ Ext.onReady(function() {
     },
     items: [{
         xtype: 'textfield',
-        name: "portefeuille",
+        name: 'action',
         fieldLabel: 'Actions du portefeuille',
         msgTarget: 'under',
         allowBlank: true
     }],
 
     buttons: [{
+        text   : 'Load test data',
+        handler: 'onLoadClick'
+    }, {
         text   : 'Save',
         handler: 'onSaveClick'
     }, {
@@ -300,8 +303,7 @@ Ext.onReady(function() {
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
     var variance = Ext.getCmp("varianceBtn").pressed;
     var skewness = Ext.getCmp("skewnessBtn").pressed;
-    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;}
-    
+    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
     
     //don't plot help tab
     if(symbol == "Help"){
