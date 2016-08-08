@@ -37,7 +37,7 @@ Ext.onReady(function() {
     },
     items: [{
         xtype: 'textfield',
-        id: "portefeuille",
+        name: "portefeuille",
         fieldLabel: 'Actions du portefeuille',
         msgTarget: 'under',
         allowBlank: true
@@ -48,13 +48,7 @@ Ext.onReady(function() {
         handler: 'onSaveClick'
     }, {
         text   : 'Reset',
-        listeners: {
-                click: function () { 
-                    // fname = Ext.get('Fname').dom.value;
-                    var portefeuille = myForm.down('textfield[name=Portefeille]').getValue();    
-                    alert(fname);
-                }
-        }
+        handler: 'onResetClick'
     }]
 });
   
@@ -268,7 +262,7 @@ Ext.onReady(function() {
       border: false,
       data : {
         type : Ext.getCmp("graphtype").getValue(),
-        portefeuille : Ext.getCmp('portefeuille').getValue(),
+        portefe : Portefeuille.down('textfield[name=portefeuille]').getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
@@ -286,6 +280,7 @@ Ext.onReady(function() {
     if(data){
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
+      Ext.getCmp("portefeuille").picker.setValue(data.portefe);
       Ext.getCmp("graphtype").setValue(data.type);
       Ext.getCmp("currentBtn").toggle(data.current); 
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
@@ -300,6 +295,7 @@ Ext.onReady(function() {
   
   function loadplot(){
     var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
+    var portefeuille = Portefeuille.down('textfield[name=portefeuille]').getValue();
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
@@ -328,7 +324,7 @@ Ext.onReady(function() {
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
-      ticker : symbol,
+      ticker : symbol, 
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
