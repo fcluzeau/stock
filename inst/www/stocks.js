@@ -12,39 +12,6 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var mess = new Ext.form.FieldContainer {
-    extend: 'Ext.form.Panel',
-    xtype: 'form-fieldcontainer',
-    controller: 'form-fieldcontainer',
-
-    title: 'Portefeuille',
-     height: 205,
-    bodyPadding: 10,
-    iconCls: 'chartIcon',
-    border: false,
-    autoScroll: true,
-    lazyRender:true,
-    animate: true,
-    containerScroll: true,
-    enableDrag: true,
-    dragConfig: {ddGroup: 'DragDrop' },
-    autoWidth: true,
-    region: 'south',
-    useArrows: true,
-    defaults: {
-        anchor: '100%',
-        labelWidth: 20
-    },
-    items: [{
-        xtype: 'textfield',
-        id: 'action',
-        fieldLabel: 'Actions du portefeuille',
-        msgTarget: 'under',
-        allowBlank: true
-    }],
-
-   
-});
   
    var treePanel = new Ext.tree.TreePanel({
     id: 'tree-panel',
@@ -52,7 +19,7 @@ Ext.onReady(function() {
     title: 'by Index',
     region: 'center',
     title: "stocks",
-    height: 350,
+    height: 500,
     border: false,
     autoScroll: true,
     lazyRender:true,
@@ -147,18 +114,12 @@ Ext.onReady(function() {
         text: "Variance",
         iconCls: 'chartIcon'
 },{
-        xtype: "button",
-        id: "skewnessBtn",
-        enableToggle: true,
-        text: "Skewness",
-        iconCls: 'chartIcon'
-},{
-        xtype: "button",
-        id: "kurtosisBtn",
-        enableToggle: true,
-        text: "Kurtosis",
-        iconCls: 'chartIcon'
-}]
+        xtype: 'textfield',
+        id: 'action',
+        fieldLabel: 'Actions du portefeuille',
+        msgTarget: 'under',
+        allowBlank: true
+    }]
   });
 
   var workspacePanel = new Ext.TabPanel({
@@ -201,7 +162,7 @@ Ext.onReady(function() {
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [ mess, treePanel ]
+      items : [ treePanel ]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
@@ -236,13 +197,6 @@ Ext.onReady(function() {
     loadplot();
 });
 
- Ext.getCmp("skewnessBtn").on("click", function(){
-    loadplot();
-});
-
- Ext.getCmp("kurtosisBtn").on("click", function(){
-    loadplot();
-});
  
   Ext.getCmp("graphtype").on("select", function(){
     loadplot();
@@ -260,8 +214,6 @@ Ext.onReady(function() {
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
-        skewness : Ext.getCmp("skewnessBtn").pressed,
-        kurtosis : Ext.getCmp("kurtosisBtn").pressed,
         start : Ext.getCmp("startdate").picker.getValue(),
         end : Ext.getCmp("enddate").picker.getValue()
        }
@@ -272,14 +224,14 @@ Ext.onReady(function() {
   function updatemenu(){
     var data = Ext.getCmp('workspace-panel').getActiveTab().data;
     if(data){
+      
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
+      Ext.getCmp("action").setValue(data.portefeuille);
       Ext.getCmp("currentBtn").toggle(data.current); 
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
-      Ext.getCmp("skewnessBtn").toggle(data.skewness);
-      Ext.getCmp("kurtosisBtn").toggle(data.kurtosis);
       updatestart(data.start);
       updateend(data.end);
     }
@@ -288,14 +240,12 @@ Ext.onReady(function() {
   function loadplot(){
     var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
     var from = Ext.getCmp("startdate").picker.getValue();
-    var to = Ext.getCmp("enddate").picker.getValue()
+    var to = Ext.getCmp("enddate").picker.getValue();
     var type = Ext.getCmp("graphtype").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
     var variance = Ext.getCmp("varianceBtn").pressed;
-    var skewness = Ext.getCmp("skewnessBtn").pressed;
-    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
     
     //don't plot help tab
     if(symbol == "Help"){
@@ -313,6 +263,7 @@ Ext.onReady(function() {
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
+      portefeuille : portefeuille,
       ticker : symbol, 
       portefeuille: portefeuille,
       from : datetostring(from), 
@@ -321,8 +272,6 @@ Ext.onReady(function() {
       current : current,
       moyenne : moyenne,
       variance : variance,
-      skewness : skewness,
-      kurtosis : kurtosis,
     }).fail(function(){
       alert("Failed to plot stock: " + req.responseText)
     });
