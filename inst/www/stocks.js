@@ -37,7 +37,7 @@ Ext.onReady(function() {
     },
     items: [{
         xtype: 'textfield',
-        name: 'action',
+        name: "portefeuille",
         fieldLabel: 'Actions du portefeuille',
         msgTarget: 'under',
         allowBlank: true
@@ -318,7 +318,6 @@ Ext.onReady(function() {
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
-      portefeuille : action,
       ticker : symbol, 
       from : datetostring(from), 
       to : datetostring(to), 
