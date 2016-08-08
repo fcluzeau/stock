@@ -48,13 +48,7 @@ Ext.onReady(function() {
         handler: 'onSaveClick'
     }, {
         text   : 'Reset',
-        listeners: {
-                click: function () { 
-                    // fname = Ext.get('Fname').dom.value;
-                    var portefeuille = myForm.down('textfield[name=Portefeille]').getValue();    
-                    alert(fname);
-                }
-        }
+        handler: 'onResetClick'
     }]
 });
   
@@ -268,7 +262,7 @@ Ext.onReady(function() {
       border: false,
       data : {
         type : Ext.getCmp("graphtype").getValue(),
-        portefeuille : Portefeuille.down('textfield[name=portefeuille]').getValue(),
+        portefeuille : Portefeuille.getForm(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
