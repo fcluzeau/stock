@@ -12,7 +12,7 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var mess = Ext.create('KitchenSink.view.form.FieldContainer', {
+ var mess = new Ext.form.FieldContainer {
     extend: 'Ext.form.Panel',
     xtype: 'form-fieldcontainer',
     controller: 'form-fieldcontainer',
@@ -37,16 +37,13 @@ Ext.onReady(function() {
     },
     items: [{
         xtype: 'textfield',
-        id : 'action',
+        name: 'action',
         fieldLabel: 'Actions du portefeuille',
         msgTarget: 'under',
         allowBlank: true
     }],
 
     buttons: [{
-        text   : 'Load test data',
-        handler: 'onLoadClick'
-    }, {
         text   : 'Save',
         handler: 'onSaveClick'
     }, {
@@ -264,7 +261,6 @@ Ext.onReady(function() {
       title: symbol,
       border: false,
       data : {
-        portefeuille :  Ext.getCmp('action').getValue();
         type : Ext.getCmp("graphtype").getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
