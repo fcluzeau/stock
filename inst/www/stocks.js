@@ -12,7 +12,7 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var mess = new Ext.create('Ext.form.Panel', {
+ var mess = Ext.define('KitchenSink.view.form.FieldContainer', {
     extend: 'Ext.form.Panel',
     xtype: 'form-fieldcontainer',
     controller: 'form-fieldcontainer',
@@ -37,13 +37,16 @@ Ext.onReady(function() {
     },
     items: [{
         xtype: 'textfield',
-        name: "portefeuille",
+        name: 'action',
         fieldLabel: 'Actions du portefeuille',
         msgTarget: 'under',
         allowBlank: true
     }],
 
     buttons: [{
+        text   : 'Load test data',
+        handler: 'onLoadClick'
+    }, {
         text   : 'Save',
         handler: 'onSaveClick'
     }, {
@@ -262,7 +265,7 @@ Ext.onReady(function() {
       border: false,
       data : {
         type : Ext.getCmp("graphtype").getValue(),
-       current : Ext.getCmp("currentBtn").pressed,
+        current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
         skewness : Ext.getCmp("skewnessBtn").pressed,
@@ -280,12 +283,11 @@ Ext.onReady(function() {
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
-       Ext.getCmp("currentBtn").toggle(data.current); 
+      Ext.getCmp("currentBtn").toggle(data.current); 
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
       Ext.getCmp("skewnessBtn").toggle(data.skewness);
       Ext.getCmp("kurtosisBtn").toggle(data.kurtosis);
-      
       updatestart(data.start);
       updateend(data.end);
     }
@@ -293,7 +295,7 @@ Ext.onReady(function() {
   
   function loadplot(){
     var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
-   var from = Ext.getCmp("startdate").picker.getValue();
+    var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
@@ -302,8 +304,6 @@ Ext.onReady(function() {
     var variance = Ext.getCmp("varianceBtn").pressed;
     var skewness = Ext.getCmp("skewnessBtn").pressed;
     var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
-      
-    }
     
     //don't plot help tab
     if(symbol == "Help"){
@@ -321,7 +321,7 @@ Ext.onReady(function() {
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
-      ticker : symbol,
+      ticker : symbol, 
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
