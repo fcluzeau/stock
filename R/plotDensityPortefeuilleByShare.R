@@ -1,9 +1,9 @@
-plotDensityPortefeuilleByShare<-function(ticker=c("GOOG","ACA.PA"), from="2013-01-01", to=Sys.time()){
+plotDensityPortefeuilleByShare<-function(portefeuille=c("GOOG","ACA.PA"), from="2013-01-01", to=Sys.time()){
 
 
-gain<-numeric(length(ticker));
-for(i in 1:(length(ticker))){
-ticke<-ticker[i]
+gain<-numeric(length(portefeuille));
+for(i in 1:(length(portefeuille))){
+ticke<-portefeuille[i]
 gaini<-getCapitalGain(ticke, from, to)
 gain[i]<-round(gaini,5);
 }
