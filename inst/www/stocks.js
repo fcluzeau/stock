@@ -262,7 +262,6 @@ Ext.onReady(function() {
       border: false,
       data : {
         type : Ext.getCmp("graphtype").getValue(),
-        portefe : Portefeuille.down('textfield[name=portefeuille]').getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
@@ -280,14 +279,12 @@ Ext.onReady(function() {
     if(data){
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
-      Ext.getCmp("portefeuille").picker.setValue(data.portefe);
       Ext.getCmp("graphtype").setValue(data.type);
       Ext.getCmp("currentBtn").toggle(data.current); 
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
       Ext.getCmp("skewnessBtn").toggle(data.skewness);
       Ext.getCmp("kurtosisBtn").toggle(data.kurtosis);
-      
       updatestart(data.start);
       updateend(data.end);
     }
@@ -295,7 +292,7 @@ Ext.onReady(function() {
   
   function loadplot(){
     var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
-    var portefeuille = Portefeuille.down('textfield[name=portefeuille]').getValue();
+    if(symbol!="portefeuille"){
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
@@ -304,9 +301,18 @@ Ext.onReady(function() {
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
     var variance = Ext.getCmp("varianceBtn").pressed;
     var skewness = Ext.getCmp("skewnessBtn").pressed;
-    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
-      
-    }
+    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;}
+    else{
+      var portefeuille = Portefeuille.down('textfield[name=portefeuille]').getValue();
+      var from = Ext.getCmp("startdate").picker.getValue();
+    var to = Ext.getCmp("enddate").picker.getValue()
+    var type = Ext.getCmp("graphtype").getValue();
+    var current = Ext.getCmp("currentBtn").pressed;
+    var gain = Ext.getCmp("currentBtn").pressed;
+    var moyenne = Ext.getCmp("moyenneBtn").pressed;
+    var variance = Ext.getCmp("varianceBtn").pressed;
+    var skewness = Ext.getCmp("skewnessBtn").pressed;
+    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;}
     
     //don't plot help tab
     if(symbol == "Help"){
