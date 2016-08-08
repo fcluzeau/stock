@@ -12,7 +12,7 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var mess = Ext.define('KitchenSink.view.form.FieldContainer', {
+ var mess = new Ext.form.FieldContainer {
     extend: 'Ext.form.Panel',
     xtype: 'form-fieldcontainer',
     controller: 'form-fieldcontainer',
