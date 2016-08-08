@@ -281,6 +281,7 @@ Ext.onReady(function() {
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
+      Ext.getCmp("portefeuille").setValue(data.type);
       Ext.getCmp("currentBtn").toggle(data.current); 
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
@@ -294,7 +295,7 @@ Ext.onReady(function() {
   
   function loadplot(){
     var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
-    var portefeuille = Portefeuille.down('textfield[name=portefeuille]').getValue();
+    var portefeuille = Ext.getCmp("portefeuille").getValue();
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
