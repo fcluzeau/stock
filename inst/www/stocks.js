@@ -11,7 +11,6 @@ Ext.onReady(function() {
 
   
   var today = new Date();
-  var portefeuille = Ext.getCmp('action').getValue();
   
  var mess = Ext.define('KitchenSink.view.form.FieldContainer', {
     extend: 'Ext.form.Panel',
@@ -44,16 +43,7 @@ Ext.onReady(function() {
         allowBlank: true
     }],
 
-    buttons: [{
-        text   : 'Load test data',
-        handler: 'onLoadClick'
-    }, {
-        text   : 'Save',
-        handler: 'onSaveClick'
-    }, {
-        text   : 'Reset',
-        handler: 'onResetClick'
-    }]
+   
 });
   
    var treePanel = new Ext.tree.TreePanel({
@@ -323,7 +313,6 @@ Ext.onReady(function() {
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       ticker : symbol, 
-      portefeuille : portefeuille;
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
