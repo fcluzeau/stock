@@ -12,7 +12,7 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var mess = new Ext.form.FieldContainer {
+ var mess = new Ext.create('Ext.form.Panel', {
     extend: 'Ext.form.Panel',
     xtype: 'form-fieldcontainer',
     controller: 'form-fieldcontainer',
@@ -37,7 +37,7 @@ Ext.onReady(function() {
     },
     items: [{
         xtype: 'textfield',
-        name: 'action',
+        id: "portefeuille",
         fieldLabel: 'Actions du portefeuille',
         msgTarget: 'under',
         allowBlank: true
@@ -48,7 +48,13 @@ Ext.onReady(function() {
         handler: 'onSaveClick'
     }, {
         text   : 'Reset',
-        handler: 'onResetClick'
+        listeners: {
+                click: function () { 
+                    // fname = Ext.get('Fname').dom.value;
+                    var portefeuille = myForm.down('textfield[name=Portefeille]').getValue();    
+                    alert(fname);
+                }
+        }
     }]
 });
   
@@ -262,6 +268,7 @@ Ext.onReady(function() {
       border: false,
       data : {
         type : Ext.getCmp("graphtype").getValue(),
+        portefeuille : Ext.getCmp('portefeuille').getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
@@ -285,6 +292,7 @@ Ext.onReady(function() {
       Ext.getCmp("varianceBtn").toggle(data.variance);
       Ext.getCmp("skewnessBtn").toggle(data.skewness);
       Ext.getCmp("kurtosisBtn").toggle(data.kurtosis);
+      
       updatestart(data.start);
       updateend(data.end);
     }
@@ -301,6 +309,8 @@ Ext.onReady(function() {
     var variance = Ext.getCmp("varianceBtn").pressed;
     var skewness = Ext.getCmp("skewnessBtn").pressed;
     var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
+      
+    }
     
     //don't plot help tab
     if(symbol == "Help"){
@@ -318,7 +328,7 @@ Ext.onReady(function() {
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
-      ticker : symbol, 
+      ticker : symbol,
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
