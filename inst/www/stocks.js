@@ -44,9 +44,7 @@ Ext.onReady(function() {
     }],
 
     buttons: [{
-        text   : 'Load test data',
-        handler: 'onLoadClick'
-    }, {
+       {
         text   : 'Save',
         handler: 'onSaveClick'
     }, {
@@ -245,6 +243,10 @@ Ext.onReady(function() {
     loadplot();
 });
 
+Ext.getCmp("Save").on("click", function(){
+    loadplot();
+});
+
  Ext.getCmp("skewnessBtn").on("click", function(){
     loadplot();
 });
@@ -270,6 +272,7 @@ Ext.onReady(function() {
         variance : Ext.getCmp("varianceBtn").pressed,
         skewness : Ext.getCmp("skewnessBtn").pressed,
         kurtosis : Ext.getCmp("kurtosisBtn").pressed,
+        portefeuille : Ext.getCmp("Save").getValue(),
         start : Ext.getCmp("startdate").picker.getValue(),
         end : Ext.getCmp("enddate").picker.getValue()
        }
@@ -283,6 +286,7 @@ Ext.onReady(function() {
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
+      Ext.getCmp("Save").setValue(data.portefeuille);
       Ext.getCmp("currentBtn").toggle(data.current); 
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
@@ -296,6 +300,7 @@ Ext.onReady(function() {
   function loadplot(){
     var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
     var from = Ext.getCmp("startdate").picker.getValue();
+    var portefeuille = Ext.getCmp("Save").pressed;
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
@@ -322,6 +327,7 @@ Ext.onReady(function() {
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       ticker : symbol, 
+      portefeuille : portefeuille,
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
