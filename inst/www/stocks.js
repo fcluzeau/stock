@@ -292,6 +292,7 @@ Ext.onReady(function() {
   
   function loadplot(){
     var symbol = Ext.getCmp('workspace-panel').getActiveTab().title;
+    if(symbol!="portefeuille"){
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue()
     var type = Ext.getCmp("graphtype").getValue();
@@ -300,7 +301,18 @@ Ext.onReady(function() {
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
     var variance = Ext.getCmp("varianceBtn").pressed;
     var skewness = Ext.getCmp("skewnessBtn").pressed;
-    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;
+    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;}
+    else{
+      var portefeuille = myForm.down('textfield[name=portefeuille]').getValue();
+      var from = Ext.getCmp("startdate").picker.getValue();
+    var to = Ext.getCmp("enddate").picker.getValue()
+    var type = Ext.getCmp("graphtype").getValue();
+    var current = Ext.getCmp("currentBtn").pressed;
+    var gain = Ext.getCmp("currentBtn").pressed;
+    var moyenne = Ext.getCmp("moyenneBtn").pressed;
+    var variance = Ext.getCmp("varianceBtn").pressed;
+    var skewness = Ext.getCmp("skewnessBtn").pressed;
+    var kurtosis = Ext.getCmp("kurtosisBtn").pressed;}
     
     //don't plot help tab
     if(symbol == "Help"){
