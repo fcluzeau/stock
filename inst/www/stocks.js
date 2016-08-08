@@ -12,7 +12,7 @@ Ext.onReady(function() {
   
   var today = new Date();
   
- var mess = Ext.define('KitchenSink.view.form.FieldContainer', {
+ var mess = new Ext.form.FieldContainer {
     extend: 'Ext.form.Panel',
     xtype: 'form-fieldcontainer',
     controller: 'form-fieldcontainer',
@@ -255,6 +255,7 @@ Ext.onReady(function() {
       title: symbol,
       border: false,
       data : {
+        portefeuille :  Ext.getCmp("action").getValue(),
         type : Ext.getCmp("graphtype").getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
@@ -313,6 +314,7 @@ Ext.onReady(function() {
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       ticker : symbol, 
+      portefeuille: portefeuille,
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
