@@ -265,8 +265,7 @@ Ext.onReady(function() {
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       portefeuille : portefeuille,
-      ticker : symbol, 
-      portefeuille: portefeuille,
+      ticker : symbol,
       from : datetostring(from), 
       to : datetostring(to), 
       type : type, 
