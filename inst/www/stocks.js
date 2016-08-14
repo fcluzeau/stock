@@ -197,6 +197,11 @@ Ext.onReady(function() {
     loadplot();
 });
 
+ Ext.getCmp("action").setText(portefeuille);
+  loadplot();
+  
+})
+  
  
   Ext.getCmp("graphtype").on("select", function(){
     loadplot();
