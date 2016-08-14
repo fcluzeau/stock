@@ -196,11 +196,6 @@ Ext.onReady(function() {
    Ext.getCmp("varianceBtn").on("click", function(){
     loadplot();
 });
-
- Ext.getCmp("action").setText(portefeuille);
-  loadplot();
-  
-})
   
  
   Ext.getCmp("graphtype").on("select", function(){
