@@ -241,7 +241,7 @@ Ext.onReady(function() {
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue();
     var type = Ext.getCmp("graphtype").getValue();
-    var portefeuille = Ext.getCmp("action").getValue();
+    var portefeuille = Ext.getCmp("action").value;
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
