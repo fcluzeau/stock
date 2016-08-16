@@ -255,6 +255,7 @@ Ext.onReady(function() {
     
     //save settings in tab
     Ext.getCmp('workspace-panel').getActiveTab().data = {
+      portefeuille : portefeuille,
       start: from,
       end: to,
       type: type,
