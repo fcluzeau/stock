@@ -207,10 +207,8 @@ Ext.onReady(function() {
       iconCls: 'chartIcon',
       closable: true,
       title: symbol,
-      str : Ext.getCmp('action').getValue(),
       border: false,
       data : {
-        portefeuille : JSON.parse("c(" + str + ")"),
         type : Ext.getCmp("graphtype").getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
