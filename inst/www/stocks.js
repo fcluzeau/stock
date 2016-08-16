@@ -209,7 +209,7 @@ Ext.onReady(function() {
       title: symbol,
       border: false,
       data : {
-        portefeuille :  Ext.getCmp("action").getValue(),
+        portefeuille :  Ext.getCmp("action").getText(),
         type : Ext.getCmp("graphtype").getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
