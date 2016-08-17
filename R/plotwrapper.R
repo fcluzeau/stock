@@ -13,14 +13,14 @@
 plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue"), ticker="GOOG", portefe=c("GOOG","ACA.PA"), from="2013-01-01", to=Sys.time(), current=FALSE, moyenne=FALSE, variance=FALSE, skewness=FALSE, kurtosis=FALSE){
 	type <- match.arg(type);
 	myplot <- switch(type,
-		smoothplot = smoothplot(portefeuille, ticker, from, to),
+		smoothplot = smoothplot(portefe, ticker, from, to),
 		highlowplot = highlowplot(ticker, from, to),
 		areaplot = areaplot(ticker, from, to),
 		plotDensity = plotDensity(ticker, from, to),
 		getPlotCapitalGain = getPlotCapitalGain(ticker, from, to),
 		densityGain = densityGain(ticker, from, to),
 		plotDensityPortefeuilleByShare = plotDensityPortefeuilleByShare(portefe, from,to),
-		getPortefeuilleValue = getPortefeuilleValue(porte, from, to),
+		getPortefeuilleValue = getPortefeuilleValue(portefe, from, to),
 		stop("Unknown plot type:", type)
 	);
 	if(type=="smoothplot"){myplot}
