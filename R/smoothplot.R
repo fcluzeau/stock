@@ -16,7 +16,7 @@ mydata <- yahoodata(ticker, from, to);
 }
 
 else{
-portefe<- unlist(strsplit(portefe, split=", "))
+portefe<- unlist(strsplit(portefe, "[,]"))
 getPortefeuilleValue(portefe, from, to);}
 
 }
