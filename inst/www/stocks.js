@@ -240,7 +240,7 @@ Ext.onReady(function() {
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue();
     var type = Ext.getCmp("graphtype").getValue();
-    var portef = Ext.getCmp("action").value;
+    var portefe = Ext.getCmp("action").value;
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
@@ -262,7 +262,7 @@ Ext.onReady(function() {
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
-      portefe : portef,
+      portefe : portefe,
       ticker : symbol,
       from : datetostring(from), 
       to : datetostring(to), 
