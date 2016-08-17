@@ -240,7 +240,7 @@ Ext.onReady(function() {
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue();
     var type = Ext.getCmp("graphtype").getValue();
-    var portefeuille = Ext.getCmp("action").value;
+    var portef = Ext.getCmp("action").value;
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
@@ -253,7 +253,6 @@ Ext.onReady(function() {
     
     //save settings in tab
     Ext.getCmp('workspace-panel').getActiveTab().data = {
-      portefeuille : portefeuille,
       start: from,
       end: to,
       type: type,
@@ -263,7 +262,7 @@ Ext.onReady(function() {
     //request plot using OpenCPU library
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
-      portefeuille : portefeuille,
+      portefe : portef,
       ticker : symbol,
       from : datetostring(from), 
       to : datetostring(to), 
