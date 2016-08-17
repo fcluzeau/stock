@@ -8,7 +8,7 @@
 #' @return ggplot object.
 #> geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
 #' @export
-smoothplot <- function(portefe=c("GOOG","ACA.PA"), ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
+smoothplot <- function(portefe="GOOG, ACA.PA", ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
 if( ticker!= "portefeuille"){
 mydata <- yahoodata(ticker, from, to);
   vol<-volatilite(ticker, from, to);
@@ -16,6 +16,7 @@ mydata <- yahoodata(ticker, from, to);
 }
 
 else{
+portefe<- unlist(strsplit(portefe, split=", "))
 getPortefeuilleValue(portefe, from, to);}
 
 }
