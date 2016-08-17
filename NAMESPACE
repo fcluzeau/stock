@@ -1,7 +1,6 @@
 export(areaplot)
 export(getcurrent)
 export(getCapitalGain)
-export(getPortefeuille)
 export(plotDensityPortefeuilleByShare)
 export(volatilite)
 export(getPortefeuilleValue)
