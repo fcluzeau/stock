@@ -15,6 +15,8 @@ mydata <- yahoodata(ticker, from, to);
   qplot(Date, Close, data = mydata, geom = c("line", "smooth"), xlab=paste("Votilité de l'action ",vol),ylab= ticker);  
 }
 
-else{getPortefeuilleValue(portefe, from, to);}
+else{
+portefe<-strsplit(portefe, " ")[[1]]
+getPortefeuilleValue(portefe, from, to);}
 
 }
