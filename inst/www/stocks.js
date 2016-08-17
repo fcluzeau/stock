@@ -117,7 +117,7 @@ Ext.onReady(function() {
         xtype: 'textfield',
         id: 'action',
         fieldLabel: 'Actions du portefeuille',
-        value:'',
+        value:"AC.PA",
         allowBlank: true
     }]
   });
@@ -209,6 +209,7 @@ Ext.onReady(function() {
       title: symbol,
       border: false,
       data : {
+        portefe : Ext.getCmp("action").getValue();
         type : Ext.getCmp("graphtype").getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
@@ -223,7 +224,7 @@ Ext.onReady(function() {
   function updatemenu(){
     var data = Ext.getCmp('workspace-panel').getActiveTab().data;
     if(data){
-      
+      Ext.getCmp("action").picker.setValue(data.portefe);
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
@@ -240,7 +241,7 @@ Ext.onReady(function() {
     var from = Ext.getCmp("startdate").picker.getValue();
     var to = Ext.getCmp("enddate").picker.getValue();
     var type = Ext.getCmp("graphtype").getValue();
-    var portefe = Ext.getCmp("action").value;
+    var portefe = Ext.getCmp("action").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
