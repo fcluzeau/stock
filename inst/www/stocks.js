@@ -209,7 +209,7 @@ Ext.onReady(function() {
       title: symbol,
       border: false,
       data : {
-        portefe :
+        portefe : Ext.getCmp("action").getValue();
         type : Ext.getCmp("graphtype").getValue(),
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
@@ -224,7 +224,7 @@ Ext.onReady(function() {
   function updatemenu(){
     var data = Ext.getCmp('workspace-panel').getActiveTab().data;
     if(data){
-      Ext.getCmp("action").picker.setValue(data.portefe);
+      Ext.getCmp("action").setValue(data.portefe);
       Ext.getCmp("startdate").picker.setValue(data.start);
       Ext.getCmp("enddate").picker.setValue(data.end);
       Ext.getCmp("graphtype").setValue(data.type);
