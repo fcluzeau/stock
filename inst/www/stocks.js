@@ -117,7 +117,7 @@ Ext.onReady(function() {
         xtype: 'textfield',
         id: 'action',
         fieldLabel: 'Actions du portefeuille',
-        value:"AC.PA",
+        value:"",
         allowBlank: true
     }]
   });
