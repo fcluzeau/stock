@@ -16,7 +16,7 @@ mydata <- yahoodata(ticker, from, to);
 }
 
 else{
-portefe<- stri_extract_all_words(portefe, simplify = TRUE)
+portefe<- strsplit(portefe, "\\s+")[[1]]
 getPortefeuilleValue(portefe, from, to);}
 
 }
