@@ -8,7 +8,7 @@ gaini<-numeric(m-1)
 for(i in 1:n){
 mydata <- yahoodata(portefeu[i], from, to);
 for(j in 1:m){
-myporte[j,2]<-myporte[j,2]+as.numeric(mydata$Close[j]);
+myporte[j,2]<-as.numeric(myporte[j,2])+as.numeric(mydata$Close[j]);
 
 }
 }
