@@ -53,6 +53,7 @@ Ext.onReady(function() {
 
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
+    containerScroll: true,
     "items" :['->',{
       xtype: "combobox",
       editable: false,
@@ -67,7 +68,6 @@ Ext.onReady(function() {
             {"fun":"densityGain", "name":"ACTION: Densité de la Plus-Value"},
             {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
             {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
-            {"fun":"varianceGain","name":"PORTEFEUILLE: Variance/Gain des actions du portefeuille"},
           ]          
         },
         queryMode: 'local',
