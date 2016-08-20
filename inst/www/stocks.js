@@ -54,7 +54,6 @@ Ext.onReady(function() {
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
      scroll: 'horizontal',
-     hidden: true,
      defaults: {
       iconMask: true
       },
