@@ -24,7 +24,7 @@ colnames(mydata)<-c("Name","var","gain");
 
 
 
-ggplot(gain, var, data=mydata, aes(colour="green", label=Name))+
+ggplot(gain, var, data=mydata, colour="green")+
   geom_point() +geom_text(aes(label=Name),hjust=2, vjust=2)
   
  }
