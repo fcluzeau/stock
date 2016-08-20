@@ -53,7 +53,10 @@ Ext.onReady(function() {
 
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
-     scroll: 'horizontal',
+     scrollable: {
+                direction: 'horizontal',
+                indicators: false
+            }
     "items" :['->',{
       xtype: "combobox",
       editable: false,
