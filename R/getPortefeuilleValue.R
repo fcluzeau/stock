@@ -22,7 +22,7 @@ myporte<-data.frame(myporte)
   gain<-round(100*gain,5);
   
   gainf<-numeric(floor((m-1)/20));
-for(i in 1:(num-1)){
+for(i in 1:(m-1)){
 gaini[i]<- 100*((myporte[i,2]-myporte[i+1,2])/myporte[i,2]);
 if((i/20)==floor(i/20)){
 gainf[(i/20)]<-gaini[i];
