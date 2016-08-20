@@ -19,8 +19,8 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 
   ase1 <- mydata$Close[1];
-  ase2<- mydata$Close[2];
-  gain<- (ase1-ase2)/ase2;
+  ase2<- mydata$Close[m];
+  gain<- (ase2-ase1)/ase1;
   gain<-round(100*gain,5);
   
   gainf<-numeric(floor((m-1)/20));
