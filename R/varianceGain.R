@@ -24,5 +24,5 @@ colnames(mydata)<-c("Name","var","gain");
 
 p <- ggplot(data=mydata, aes(gain, var));
 p + geom_point();
-p + geom_point() +scale_y_discrete(labels = percent)+ geom_text(aes(gain, var, colour="green", label=Name))
+p + geom_point() + geom_text(aes(gain, var, colour="green", label=Name))
  }
