@@ -54,9 +54,6 @@ Ext.onReady(function() {
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
      scroll: 'horizontal',
-     defaults: {
-      iconMask: true
-      },
     "items" :['->',{
       xtype: "combobox",
       editable: false,
