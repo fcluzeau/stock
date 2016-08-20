@@ -22,7 +22,5 @@ mydat<-yahoodata(portefeu[i], from, to);
 mydata<-data.frame(mydata);
 colnames(mydata)<-c("Name","var","gain");
 
-qplot(gain, var, data=mydata, shape=am, color=am,
-   facets=gear~cyl, size=I(3),
-   xlab="Gain", ylab="Variance") 
+qplot(gain, var, data=mydata, shape=am, color=am, xlab="Gain", ylab="Variance") 
  }
