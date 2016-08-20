@@ -25,7 +25,7 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
   
   gainf<-numeric(floor((m-1)/20));
 for(i in 1:(m-1)){
-gaini[i]<- 100*((myporte[i,2]-myporte[i+1,2])/myporte[i,2]);
+gaini[i]<- 100*((mydata[i,2]-mydata[i+1,2])/mydata[i,2]);
 if((i/20)==floor(i/20)){
 gainf[(i/20)]<-gaini[i];
 }}
