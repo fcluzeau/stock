@@ -29,7 +29,7 @@ gaini[i]<- 100*((mydata[i,2]-mydata[i+1,2])/mydata[i+1,2]);
 if((i/20)==floor(i/20)){
 gainf[(i/20)]<-gaini[i];
 }}
-moyenneredm<-round(mean(100*gainf),5);
+moyenneredm<-round(mean(gainf),5);
 moyennegeoredm<-100*getMoyenneGeometrique(gainf);
 moyennegeoredm<-round(moyennegeoredm,5);
 
