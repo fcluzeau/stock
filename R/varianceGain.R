@@ -8,9 +8,9 @@ mydata<-matrix(nrow=n, ncol=3);
 
 for(i in 1:n){
 var[i]<-getVariance(portefeu[i], from, to);
-mydata<-yahoodata(portefeu[i], from, to);
-  ase1 <- mydata$Close[1];
-  ase2<- mydata$Close[m];
+mydat<-yahoodata(portefeu[i], from, to);
+  ase1 <- mydat$Close[1];
+  ase2<- mydat$Close[m];
   gain<- (ase1-ase2)/ase2;
   gain<-round(100*gain,5);
   gaint[i]<-gain;
