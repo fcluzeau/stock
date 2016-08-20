@@ -68,6 +68,7 @@ Ext.onReady(function() {
             {"fun":"densityGain", "name":"ACTION: Densité de la Plus-Value"},
             {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
             {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
+            {"fun":"varianceGain","name":"PORTEFEUILLE: Variance/Gain des actions du portefeuille"},
           ]          
         },
         queryMode: 'local',
