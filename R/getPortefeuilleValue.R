@@ -1,24 +1,23 @@
 getPortefeuilleValue<-function(portefe="AC.PA ACA.PA", from = "2013-01-01", to=Sys.time()){
 portefeu<-unlist(strsplit(portefe, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
+mydata<-yahoodata(portefeu[1], from, to);
 n<-length(portefeu);
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
 
 for(i in 1:n){
-mydata <- yahoodata(portefeu[i], from, to);
+mydat <- yahoodata(portefeu[i], from, to);
 for(j in 1:m){
-myporte[j,2]<-as.numeric(myporte[j,2])+as.numeric(mydata$Close[j]);
+mydata$Close[j]<-as.numeric(mydata$Close[j])+as.numeric(mydat$Close[j]);
 
 }
 }
 
-myporte[,1]<-mydata$Date;
-colnames(myporte)<-c("Date","Close");
-myporte<-data.frame(myporte);
-myporte[is.na(myporte)] <- 0;
-  ase1 <- myporte[1,2];
-  ase2<- myporte[m,2];
+
+
+  ase1 <- mydata$Close[1];
+  ase2<- mydata$Close[2];
   gain<- (ase1-ase2)/ase2;
   gain<-round(100*gain,5);
   
@@ -33,5 +32,5 @@ moyennegeoredm<-100*getMoyenneGeometrique(gainf);
 moyennegeoredm<-round(moyennegeoredm,5);
 
 
-qplot(myporte[,1], myporte[,2], geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%"))
+qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%"))
 }
