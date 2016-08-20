@@ -21,7 +21,8 @@ mydat<-yahoodata(portefeu[i], from, to);
 
 mydata<-data.frame(mydata);
 colnames(mydata)<-c("Name","var","gain");
-mydata<-mydata[order(mydata$gain),];
+gain <- as.numeric(rownames(mydata))
+mydata <- mydata[order(gain),]
 
 p <- ggplot(data=mydata, aes(gain, var));
 p + geom_point();
