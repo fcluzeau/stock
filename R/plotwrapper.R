@@ -10,7 +10,7 @@
 #' @param current include the current price of this stock. TRUE/FALSE.
 #' @import ggplot2
 #' @export
-plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue"), ticker="GOOG", portefe="AC.PA ACA.PA", from="2013-01-01", to=Sys.time(), current=FALSE, moyenne=FALSE, variance=FALSE, skewness=FALSE, kurtosis=FALSE){
+plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue", "varianceGain"), ticker="GOOG", portefe="AC.PA ACA.PA", from="2013-01-01", to=Sys.time(), current=FALSE, moyenne=FALSE, variance=FALSE, skewness=FALSE, kurtosis=FALSE){
 	type <- match.arg(type);
 	myplot <- switch(type,
 		smoothplot = smoothplot(portefe, ticker, from, to),
@@ -21,10 +21,11 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		densityGain = densityGain(ticker, from, to),
 		plotDensityPortefeuilleByShare = plotDensityPortefeuilleByShare(portefe, from,to),
 		getPortefeuilleValue = getPortefeuilleValue(portefe, from, to),
+		varianceGain = varianceGain(portefe, from, to),
 		stop("Unknown plot type:", type)
 	);
 	if(type=="smoothplot"){myplot}
-	else if(type!="plotDensity" & type!="getPlotCapitalGain" & type!="densityGain" & type!="plotDensityPortefeuilleByShare" & type!="getPortefeuilleValue"){
+	else if(type!="plotDensity" & type!="getPlotCapitalGain" & type!="densityGain" & type!="plotDensityPortefeuilleByShare" & type!="getPortefeuilleValue" &type!="varianceGain"){
 	#remove axis label date
 	myplot <- myplot + xlab("Date") + ylab(ticker);}
 	else{myplot}
