@@ -1,10 +1,10 @@
-plotDensityPortefeuilleByShare<-function(portefe=c("GOOG","ACA.PA"), from="2013-01-01", to=Sys.time()){
+plotDensityPortefeuilleByShare<-function(portefe="AC.PA ACA.PA", from="2013-01-01", to=Sys.time()){
 
-
+portefe<-unlist(strsplit(portefe, " "))
 gain<-numeric(length(portefe));
 for(i in 1:(length(portefe))){
-ticke<-portefe[i]
-gaini<-getCapitalGain(ticke, from, to)
+ticke<-portefe[i];
+gaini<-getCapitalGain(ticke, from, to);
 gain[i]<-round(gaini,5);
 }
  kurt<-kurtosis(gain);
