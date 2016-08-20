@@ -3,13 +3,15 @@ portefeu<-unlist(strsplit(portefe, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
 n<-length(portefeu);
+li<-1000/n;
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
 
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
+ai<-li/mydat$Close[1];
 for(j in 1:m){
-mydata$Close[j]<-as.numeric(mydata$Close[j])+as.numeric(mydat$Close[j]);
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
