@@ -33,5 +33,5 @@ moyennegeoredm<-100*getMoyenneGeometrique(gainf);
 moyennegeoredm<-round(moyennegeoredm,5);
 
 
-qplot(myporte$Date, myporte$Close, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%"))
+qplot(myporte[,1], myporte[,2], geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%"))
 }
