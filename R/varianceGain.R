@@ -22,5 +22,8 @@ mydat<-yahoodata(portefeu[i], from, to);
 mydata<-data.frame(mydata);
 colnames(mydata)<-c("Name","var","gain");
 
-qplot(gain, var, data=mydata, xlab="Gain", ylab="Variance") 
- }
+p <- ggplot(data=mydata, aes(x=var, y=gain)+stat_smooth();
+p + geom_point();
+p + geom_point() + geom_text(aes(gain, var, colour="green", label=Name))
+}
+ 
