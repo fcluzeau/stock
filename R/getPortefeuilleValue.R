@@ -9,7 +9,7 @@ gaini<-numeric(m-1)
 
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
-ai<-li/mydat$Close[1];
+ai<-li/mydat$Close[m];
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
