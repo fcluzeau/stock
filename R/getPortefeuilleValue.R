@@ -1,5 +1,5 @@
 getPortefeuilleValue<-function(portefe="AC.PA,ACA.PA", from = "2013-01-01", to=Sys.time()){
-portefe<-character(5);
+
 portefe<-unlist(strsplit(portefe, ","));
 m<-dim(yahoodata(portefe[1], from, to))[1];
 myporte<-matrix( nrow=m , ncol=2);
