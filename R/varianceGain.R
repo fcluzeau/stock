@@ -14,7 +14,7 @@ mydata<-yahoodata(portefeu[i], from, to);
   gain<- (ase1-ase2)/ase2;
   gain<-round(100*gain,5);
   gaint[i]<-gain;
-  mydata[i,1]<-as.character(portefeu[i]);
+  mydata[i,1]<-portefeu[i];
   mydata[i,2]<-as.numeric(var[i]);
   mydata[i,3]<-as.numeric(gaint[i]);
 }
