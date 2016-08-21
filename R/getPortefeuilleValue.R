@@ -1,5 +1,6 @@
-getPortefeuilleValue<-function(portefe="AC.PA ACA.PA", from = "2013-01-01", to=Sys.time()){
+getPortefeuilleValue<-function(portefe="AC.PA ACA.PA",nomb="", from = "2013-01-01", to=Sys.time()){
 portefeu<-unlist(strsplit(portefe, " "));
+nomb<-unlist(strsplit(nomb, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
 n<-length(portefeu);
@@ -7,7 +8,7 @@ li<-1000/n;
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
 
-
+if(nomb==NULL){
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
 ai<-li/mydat$Close[m];
@@ -16,6 +17,14 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
+}
+else{
+for(i in 1:n){
+mydat <- yahoodata(portefeu[i], from, to);
+ai<-10*as.numeric(nomb[i])/mydat$Close[m];
+for(j in 1:m){
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
+}}}
 
 
   ase1 <- mydata$Close[1];
