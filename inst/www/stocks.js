@@ -19,7 +19,7 @@ Ext.onReady(function() {
     title: 'by Index',
     region: 'center',
     title: "stocks",
-    height: 500,
+    height: 300,
     border: false,
     autoScroll: true,
     lazyRender:true,
@@ -156,7 +156,15 @@ Ext.onReady(function() {
     tbar: myToolbar  
   });
   
-  
+  var detailsPanel = Ext.Panel({
+    id: 'details-panel',
+    split: true,      
+    height: 205,
+    minSize: 150,   
+    title: 'Details',
+    region: 'south',    
+    bodyStyle: 'padding-bottom:15px;background:#eee;'
+}); 
 
   new Ext.Viewport({
     id : 'viewport',
@@ -171,7 +179,7 @@ Ext.onReady(function() {
       width: 200,
       minSize: 100,
       maxSize: 500,
-      items : [ treePanel ]
+      items : [ treePanel,detailsPanel ]
     }, workspacePanel ],
     renderTo : Ext.getBody()
   });
