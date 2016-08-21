@@ -8,7 +8,7 @@ li<-1000/n;
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
 
-if(nomb==NULL){
+if(length(nomb)==0){
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
 ai<-li/mydat$Close[m];
