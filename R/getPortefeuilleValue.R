@@ -11,9 +11,41 @@ gaini<-numeric(m-1)
 if(length(nomb)==0){
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
+mydat<-c(mydat$Date,mydat$Close);
 ai<-floor(li/mydat$Close[m]);
 for(j in 1:m){
-mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
+if(mydat$Date[j]=mydata$Date[j]){
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);}
+else if(as.numeric(format(mydat$Date[j], "%Y"))<as.numeric(format(mydata$Date[j], "%Y"))){
+mydat1<-mydat[1:(j-1),];
+mydat2<-mydat[(j+1):m,];
+mydat<-rbind(mydat1,mydat2);}
+
+else if(as.numeric(format(mydat$Date[j], "%m"))<as.numeric(format(mydata$Date[j], "%m"))){
+mydat1<-mydat[1:(j-1),];
+mydat2<-mydat[(j+1):m,];
+mydat<-rbind(mydat1,mydat2);}
+
+else if(as.numeric(format(mydat$Date[j], "%d"))<as.numeric(format(mydata$Date[j], "%d"))){
+mydat1<-mydat[1:(j-1),];
+mydat2<-mydat[(j+1):m,];
+mydat<-rbind(mydat1,mydat2);}
+
+else if(as.numeric(format(mydat$Date[j], "%Y"))>as.numeric(format(mydata$Date[j], "%Y"))){
+mydat1<-mydat[1:j,];
+mydat2<-rbind(mydat[j,],mydat[j:m,]);
+mydat<-rbind(mydat1,mydat2);}
+
+
+else if(as.numeric(format(mydat$Date[j], "%m"))>as.numeric(format(mydata$Date[j], "%m"))){
+mydat1<-mydat[1:j,];
+mydat2<-rbind(mydat[j,],mydat[j:m,]);
+mydat<-rbind(mydat1,mydat2);}
+
+else if(as.numeric(format(mydat$Date[j], "%d"))>as.numeric(format(mydata$Date[j], "%d"))){
+mydat1<-mydat[1:j,];
+mydat2<-rbind(mydat[j,],mydat[j:m,]);
+mydat<-rbind(mydat1,mydat2);}
 
 }
 }
