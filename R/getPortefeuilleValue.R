@@ -4,14 +4,14 @@ nomb<-unlist(strsplit(nomb, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
 n<-length(portefeu);
-li<-1000/n;
+li<-1000000/n;
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1)
 
 if(length(nomb)==0){
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
-ai<-li/mydat$Close[m];
+ai<-floor(li/mydat$Close[m]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
@@ -21,7 +21,7 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 else{
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
-ai<-10*as.numeric(nomb[i])/mydat$Close[m];
+ai<-floor(10000*as.numeric(nomb[i])/mydat$Close[m]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
@@ -43,7 +43,8 @@ moyennegeoredm<-getMoyenneGeometrique(gainf);
 moyennegeoredm<-round(moyennegeoredm,5);
 skewn<-skewness(mydata$Close);
 kur<-kurtosis(mydata$Close);
+cash<-1000000-mydata$Close[m];
+mydata$Close<-mydata$Close/1000;
 
-
-qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%","; skewness:", skewn,"; kurtosis:", kur))
+qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
 }
