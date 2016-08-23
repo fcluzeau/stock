@@ -14,7 +14,7 @@ mydat <- yahoodata(portefeu[i], from, to);
 mydat<-c(mydat$Date,mydat$Close);
 ai<-floor(li/mydat$Close[m]);
 for(j in 1:m){
-if(mydat$Date[j]==mydata$Date[j]){
+if(mydat$Date[j] == mydata$Date[j]){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);}
 else if(as.numeric(format(mydat$Date[j], "%Y"))<as.numeric(format(mydata$Date[j], "%Y"))){
 mydat1<-mydat[1:(j-1),];
