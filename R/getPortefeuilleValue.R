@@ -12,7 +12,7 @@ l<-1;
 
 if(length(nomb)==0){
 for(i in 1:n){
-if(portefeu[i]{strlen(portefeu[i])-1}==L){
+if(is.element(<portefeu>, <grep("[[:alpha:]]*L$", txt)>)){
 portefeu2[l]<-portefeu[i];
 l<-l+1;
 portefeu1<-portefeu[-i];
