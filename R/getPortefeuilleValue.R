@@ -10,6 +10,7 @@ myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1);
 l<-1;
 portefeu1<-portefeu;
+portefeu2<-array();
 
 if(length(nomb)==0){
 for(i in 1:n){
