@@ -7,7 +7,8 @@ mydata$Colse<-0;
 n<-length(portefeu);
 li<-1000000/n;
 myporte<-matrix( nrow=m , ncol=2);
-gaini<-numeric(m-1)
+gaini<-numeric(m-1);
+cash<-0;
 
 if(length(nomb)==0){
 for(i in 1:n){
@@ -43,7 +44,7 @@ gainf[(i/20)]<-gaini[i];
 moyenneredm<-round(mean(gainf),5);
 skewn<-skewness(mydata$Close);
 kur<-kurtosis(mydata$Close);
-cash<-1000000-mydata$Close[1];
+cash<-1000000-mydata$Close[m];
 mydata$Close<-mydata$Close/1000;
 
 qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
