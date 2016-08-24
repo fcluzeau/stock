@@ -14,7 +14,7 @@ mydat <- yahoodata(portefeu[i], from, to);
 ai<-floor(li/mydat$Close[m]);
 mydat<-c(mydat$Date,mydat$Close);
 for(j in 1:m){
-mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat[j,2]);
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
@@ -26,7 +26,7 @@ mydat <- yahoodata(portefeu[i], from, to);
 mydat<-c(mydat$Date, mydat$Close);
 ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
-mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat[j,2]);
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
 
 
