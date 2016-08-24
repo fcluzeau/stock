@@ -209,7 +209,7 @@ Ext.onReady(function() {
   });  
   
    Ext.getCmp("actBtn").on("click", function(){
-    Ext.getCmp("action").getValue(symbol);
+    Ext.getCmp("action").setValue(symbol);
     loadplot();
   });
   
