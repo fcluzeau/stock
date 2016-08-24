@@ -3,40 +3,29 @@ portefeu<-unlist(strsplit(portefe, " "));
 nomb<-unlist(strsplit(nomb, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
-mydata$Close<-0;
 n<-length(portefeu);
 li<-1000000/n;
 myporte<-matrix( nrow=m , ncol=2);
-gaini<-numeric(m-1);
-l<-1;
-portefeu1<-portefeu;
-portefeu2<-character(1);
+gaini<-numeric(m-1)
 
 if(length(nomb)==0){
 for(i in 1:n){
-if(is.element(i, grep("[[:alpha:]]*L$", portefeu))){
-portefeu2[l]<-portefeu[i];
-l<-l+1;
-portefeu1<-portefeu1[-i];
-}}
-
-for(i in 1:length(portefeu1)){
-mydat <- yahoodata(portefeu1[i], from, to);
+mydat <- yahoodata(portefeu[i], from, to);
 ai<-floor(li/mydat$Close[m]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
+}
 
-
-
-for(i in 1:length(portefeu1)){
-mydat <- yahoodata(portefeu1[i], from, to);
+else{
+for(i in 1:n){
+mydat <- yahoodata(portefeu[i], from, to);
 ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
-}}
+}}}
 
 
   ase1 <- mydata$Close[1];
@@ -57,31 +46,6 @@ skewn<-skewness(mydata$Close);
 kur<-kurtosis(mydata$Close);
 cash<-1000000-mydata$Close[m];
 mydata$Close<-mydata$Close/1000;
-mydata1<-mydata;
 
-mydata<-yahoodata(portefeu2[1], from, to);
-mydata$Close<-0;
-for(i in 1:length(portefeu2)){
-mydat <- yahoodata(portefeu2[i], from, to);
-ai<-floor(li/mydat$Close[m]);
-for(j in 1:m){
-mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
-
+qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
 }
-}
-
-
-
-for(i in 1:length(portefeu2)){
-mydat <- yahoodata(portefeu2[i], from, to);
-ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
-for(j in 1:m){
-mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
-}}
-mydata$Close<-mydata$Close/1000;
-mydata2<-mydata;
-
-par(mfrow = c(1,2))
-qplot(Date, Close, data=mydata1, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
-qplot(Date, Close, data=mydata2, geom = c("line", "smooth"))
-}}
