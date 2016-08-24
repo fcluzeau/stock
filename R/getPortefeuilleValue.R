@@ -67,15 +67,15 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
-}
 
-else{
+
+
 for(i in 1:length(portefeu2)){
 mydat <- yahoodata(portefeu2[i], from, to);
 ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
-}}}
+}}
 mydata$Close<-mydata$Close/1000;
 mydata2<-mydata;
 
