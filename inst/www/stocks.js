@@ -100,6 +100,12 @@ Ext.onReady(function() {
         }
       },{
         xtype: "button",
+        id: "actBtn",
+        enableToggle: true,
+        text: "Ajouter au portefeuille",
+        iconCls: 'chartIcon'
+      },{
+        xtype: "button",
         id: "currentBtn",
         enableToggle: true,
         text: "Valeur Actuelle",
@@ -201,6 +207,11 @@ Ext.onReady(function() {
     updateend(date);
     loadplot();
   });  
+  
+   Ext.getCmp("actBtn").on("click", function(){
+    Ext.getCmp("action").setValue(portefe + symbol);
+    loadplot();
+  });
   
   Ext.getCmp("currentBtn").on("click", function(){
     loadplot();
