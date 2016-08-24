@@ -41,12 +41,10 @@ if((i/20)==floor(i/20)){
 gainf[(i/20)]<-gaini[i];
 }}
 moyenneredm<-round(mean(gainf),5);
-moyennegeoredm<-getMoyenneGeometrique(gainf);
-moyennegeoredm<-round(moyennegeoredm,5);
 skewn<-skewness(mydata$Close);
 kur<-kurtosis(mydata$Close);
 cash<-1000000-mydata$Close[m];
 mydata$Close<-mydata$Close/1000;
 
-qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
+qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
 }
