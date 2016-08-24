@@ -9,13 +9,14 @@ li<-1000000/n;
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1);
 l<-1;
+portefeu1<-portefeu;
 
 if(length(nomb)==0){
 for(i in 1:n){
 if(is.element(portefeu, grep("[[:alpha:]]*L$", txt))){
 portefeu2[l]<-portefeu[i];
 l<-l+1;
-portefeu1<-portefeu[-i];
+portefeu1<-portefeu1[-i];
 }}
 
 for(i in 1:length(portefeu1)){
@@ -26,7 +27,7 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
-}
+
 
 
 for(i in 1:length(portefeu1)){
@@ -34,7 +35,7 @@ mydat <- yahoodata(portefeu1[i], from, to);
 ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
-}}}
+}}
 
 
   ase1 <- mydata$Close[1];
@@ -82,4 +83,4 @@ mydata2<-mydata;
 par(mfrow = c(1,2))
 qplot(Date, Close, data=mydata1, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; moyenne géométrique mensuelle du rendement:", moyennegeoredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
 qplot(Date, Close, data=mydata2, geom = c("line", "smooth"))
-}
+}}
