@@ -301,7 +301,10 @@ Ext.onReady(function() {
       moyenne : moyenne,
       variance : variance,
     }).fail(function(){
-      alert("Failed to plot stock: " + req.responseText)
+      if(symbol=="portefeuille"){
+        alert("Avez vous entré les actions dans le portefeuille, choisi le bon type de graphe, ou les bons symboles?" + req.responseText)
+      }
+      else{alert("Failed to plot stock: " + req.responseText)}
     });
   }
   
