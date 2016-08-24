@@ -43,7 +43,7 @@ gainf[(i/20)]<-gaini[i];
 moyenneredm<-round(mean(gainf),5);
 skewn<-skewness(mydata$Close);
 kur<-kurtosis(mydata$Close);
-cash<-1000000-mydata$Close[m];
+cash<-1000000-mydata$Close[1];
 mydata$Close<-mydata$Close/1000;
 
 qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
