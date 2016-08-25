@@ -10,35 +10,38 @@ Ext.onReady(function() {
 ]);
 
   
-  var today = new Date();
+  var today = new Date(); //définition de la date today qui est la date actuelle 
   
-  
+  // création de l'arbre contenant les actions
    var treePanel = new Ext.tree.TreePanel({
     id: 'tree-panel',
     iconCls: 'chartIcon',
     title: 'by Index',
     region: 'center',
-    title: "stocks",
-    height: 300,
+    title: "Actions",
+    height: 300, //réglage de la hauteur
     border: false,
-    autoScroll: true,
+    autoScroll: true, //permet de dérouler l'arbre si la fenêtre est trop petite.
     lazyRender:true,
     animate: true,
     containerScroll: true,
     enableDrag: true,
     dragConfig: {ddGroup: 'DragDrop' },
-    autoWidth: true,
+    autoWidth: true, // réglage de la largeur en fonction des autres fenêtres de la page
     
     // tree-specific configs:
-    rootVisible: false,
+    rootVisible: false, //la racine de l'arbre n'est pas visible 
     lines: false,
     singleExpand: true,
     useArrows: true,
+    //utilisation des données définies de la ligne 320 à 333
     store: {
       root: {
         expanded: true
       }
     },
+    
+    // si vous appuyez sur une action de l'arbre, un nouveau tracé apparaît grâce à la méthode addWorkspace défini plus loin
     listeners: {
       itemdblclick: function(s, r){
         if(r.data.leaf){
@@ -54,7 +57,8 @@ Ext.onReady(function() {
    
   var myToolbar = Ext.create('Ext.toolbar.Toolbar', {
     containerScroll: true,
-    autoScroll: true,
+    autoScroll: true,// permet d'avoir accès à toutes les options
+    //définitions des objects de la toolbar
     "items" :['->',{
       xtype: "combobox",
       editable: false,
@@ -78,7 +82,7 @@ Ext.onReady(function() {
         value: "smoothplot",
         id: "graphtype",
         iconCls: 'chartIcon'
-      }, {
+      }, { //ajout des dates de début et de fin
         text: 'Date de Début: 2015-01-01',
         id: 'startdatetext',
         iconCls: 'calendarIcon',
@@ -98,13 +102,8 @@ Ext.onReady(function() {
           id: 'enddate',
           value: new Date()
         }
-      },{
-        xtype: "button",
-        id: "actBtn",
-        enableToggle: true,
-        text: "Ajouter au portefeuille",
-        iconCls: 'chartIcon'
-      },{
+      },{// ajout des différents boutons
+      
         xtype: "button",
         id: "currentBtn",
         enableToggle: true,
@@ -122,18 +121,25 @@ Ext.onReady(function() {
         enableToggle: true,
         text: "Variance",
         iconCls: 'chartIcon'
-},{
+},{// ajout des textfields
         xtype: 'textfield',
         id: 'action',
-        fieldLabel: 'Actions du portefeuille',
+        fieldLabel: 'Actions du Portefeuille',
         value:"",
         allowBlank: true
     },{
         xtype: 'textfield',
         id: 'nombre',
-        fieldLabel: 'Proportions des actions',
+        fieldLabel: 'Proportions des Actions',
         value:"",
         allowBlank: true
+    },{
+       xtype: 'textfield',
+        id: 'actionang',
+        fieldLabel: 'Actions Anglaises du Portefeuille',
+        value:"",
+        allowBlank: true
+    
     }]
   });
 
@@ -208,10 +214,6 @@ Ext.onReady(function() {
     loadplot();
   });  
   
-   Ext.getCmp("actBtn").on("click", function(){
-    Ext.getCmp("action").setValue(symbol);
-    loadplot();
-  });
   
   Ext.getCmp("currentBtn").on("click", function(){
     loadplot();
@@ -269,6 +271,7 @@ Ext.onReady(function() {
     var to = Ext.getCmp("enddate").picker.getValue();
     var type = Ext.getCmp("graphtype").getValue();
     var portefe = Ext.getCmp("action").getValue();
+    var portefeang = Ext.getCmp("actionang").getValue();
     var nomb  = Ext.getCmp("nombre").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
@@ -292,6 +295,7 @@ Ext.onReady(function() {
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       portefe : portefe,
+      portefeang : portefeang,
       nomb : nomb,
       ticker : symbol,
       from : datetostring(from), 
