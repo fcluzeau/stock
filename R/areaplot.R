@@ -7,7 +7,7 @@
 #' @param to end date. Either string or date object.
 #' @return ggplot object.
 #' @export
-areaplot <- function(ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
+areaplot <- function(ticker = "GOOG", portefe="ACA.PA AC.PA", from = "2013-01-01", to=Sys.time()){
   if(ticker!="portefeuille"){
   mydata <- yahoodata(ticker, from, to);
 mydata$up <- mydata$Open < mydata$Close;
