@@ -84,7 +84,7 @@ cash<-round(1000000-mydata$Close[m],5);
 mydata$Close<-mydata$Close/1000;
 
 if(length(portefeuang)!=0){
-par(mfrow=c(2,1))
+
 qplot(Date, Close, data=mydatang, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gainang,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredmang,"%","; skewness:", skewnang,"; kurtosis:", kurang))
 qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
 }
