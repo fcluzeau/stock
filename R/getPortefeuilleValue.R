@@ -25,7 +25,7 @@ mydatang$Close[j]<-as.numeric(mydatang$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
-}
+
 
 
   ase1 <- mydatang$Close[1];
@@ -43,7 +43,7 @@ moyenneredmang<-round(mean(gainf),5);
 skewnang<-round(skewness(mydata$Close),5);
 kurang<-round(kurtosis(mydata$Close),5);
 mydatang$Close<-mydatang$Close/1000;
-
+}
 
 
 if(length(nomb)==0){
