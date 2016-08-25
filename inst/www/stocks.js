@@ -133,13 +133,6 @@ Ext.onReady(function() {
         fieldLabel: 'Proportions des Actions',
         value:"",
         allowBlank: true
-    },{
-       xtype: 'textfield',
-        id: 'actionang',
-        fieldLabel: 'Actions Anglaises du Portefeuille',
-        value:"",
-        allowBlank: true
-    
     }]
   });
 
@@ -271,7 +264,6 @@ Ext.onReady(function() {
     var to = Ext.getCmp("enddate").picker.getValue();
     var type = Ext.getCmp("graphtype").getValue();
     var portefe = Ext.getCmp("action").getValue();
-    var portefeang = Ext.getCmp("actionang").getValue();
     var nomb  = Ext.getCmp("nombre").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
@@ -295,7 +287,6 @@ Ext.onReady(function() {
     var id = Ext.getCmp('workspace-panel').getActiveTab().el.id;
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       portefe : portefe,
-      portefeang : portefeang,
       nomb : nomb,
       ticker : symbol,
       from : datetostring(from), 
