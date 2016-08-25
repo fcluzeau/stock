@@ -19,7 +19,7 @@ l<-dim(mydatang)[1];
 ni<-1000/length(portefeuang);
 for(i in 1:length(portefeuang)){
 mydat <- yahoodata(portefeuang[i], from, to);
-ai<-floor(ni/mydat$Close[l]);
+ai<-floor(ni/mydat$Close[i]);
 for(j in 1:l){
 mydatang$Close[j]<-as.numeric(mydatang$Close[j])+ai*as.numeric(mydat$Close[j]);
 
@@ -33,8 +33,8 @@ mydatang$Close[j]<-as.numeric(mydatang$Close[j])+ai*as.numeric(mydat$Close[j]);
   gainang<- (ase1-ase2)/ase2;
   gainang<-round(100*gainang,5);
   
-  gainf<-numeric(floor((m-1)/20));
-for(i in 1:(m-1)){
+  gainf<-numeric(floor((l-1)/20));
+for(i in 1:(l-1)){
 gaini[i]<- 100*((mydata[i+1,2]-mydata[i,2])/mydata[i,2]);
 if((i/20)==floor(i/20)){
 gainf[(i/20)]<-gaini[i];
