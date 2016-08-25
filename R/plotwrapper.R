@@ -15,7 +15,7 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 	myplot <- switch(type,
 		smoothplot = smoothplot(portefe, nomb, ticker, from, to),
 		highlowplot = highlowplot(ticker, from, to),
-		areaplot = areaplot(ticker, from, to),
+		areaplot = areaplot(ticker, portefe, from, to),
 		plotDensity = plotDensity(ticker, from, to),
 		getPlotCapitalGain = getPlotCapitalGain(ticker, from, to),
 		densityGain = densityGain(ticker, from, to),
