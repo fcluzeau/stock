@@ -1,5 +1,6 @@
-getPortefeuilleValue<-function(portefe="AC.PA ACA.PA",nomb="75 25", from = "2013-01-01", to=Sys.time()){
+getPortefeuilleValue<-function(portefe="AC.PA ACA.PA", portefeang="OML.L", nomb="75 25", from = "2013-01-01", to=Sys.time()){
 portefeu<-unlist(strsplit(portefe, " "));
+portefeuang<-unlist(strsplit(portefeang, " "));
 nomb<-unlist(strsplit(nomb, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
