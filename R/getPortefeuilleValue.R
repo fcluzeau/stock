@@ -17,7 +17,7 @@ mydatang<-yahoodata(portefeuang[1], from, to);
 mydatang$Close<-0;
 l<-dim(mydatang)[1];
 ni<-1000/length(portefeuang);
-for(i in 1:length(portefeuang){
+for(i in 1:length(portefeuang)){
 mydat <- yahoodata(portefeuang[i], from, to);
 ai<-floor(ni/mydat$Close[l]);
 for(j in 1:l){
