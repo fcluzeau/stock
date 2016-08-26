@@ -19,7 +19,6 @@ portefeu<-unlist(strsplit(portefe, " "));
 nomb<-unlist(strsplit(nomb, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
-mydata$up<-0;
 n<-length(portefeu);
 li<-1000000/n;
 
