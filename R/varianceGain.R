@@ -27,7 +27,7 @@ head(mydata);
 
 
 p <- ggplot(data=mydata, aes(gain, var, colour="green", label=Name))
-p + geom_point()
-p + geom_point() + theme_classic()+ geom_text()
+p <- p + geom_point()
+p <- p + geom_point() + theme_classic()+ geom_text()
 }
  
