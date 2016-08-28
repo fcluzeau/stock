@@ -25,9 +25,9 @@ mydata$var <- as.factor(mydata$var);
 mydata$gain<-as.factor(mydata$gain);
 head(mydata);
 
-theme_set(theme_gray(base_size = 10))
-p <- ggplot(data=mydata, aes(gain, var, colour="green", label=Name));
-p + geom_point();
+
+p <- ggplot(data=mydata, aes(gain, var, colour="green", label=Name))
+p + geom_point()
 p + geom_point() + theme_classic()+ geom_text()
 }
  
