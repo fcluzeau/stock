@@ -21,13 +21,8 @@ mydat<-yahoodata(portefeu[i], from, to);
 
 mydata<-data.frame(mydata);
 colnames(mydata)<-c("Name","var","gain");
-mydata$var <- as.factor(mydata$var);
-mydata$gain<-as.factor(mydata$gain);
-head(mydata);
 
 
-p <- ggplot(data=mydata, aes(gain, var, colour="green", label=Name))
-p <- p + geom_point()
-p <- p + geom_point() + theme_classic()+ geom_text()
+p <- ggplot(data=mydata, aes(gain, var, colour="green", label=Name)) + geom_point() + theme_classic()+ geom_text()
 }
  
