@@ -10,7 +10,7 @@
 #' @param current include the current price of this stock. TRUE/FALSE.
 #' @import ggplot2
 #' @export
-plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue", "varianceGain"), ticker="GOOG", portefe="AC.PA ACA.PA", nomb="75 25", from="2013-01-01", to=Sys.time(), current=FALSE, moyenne=FALSE, variance=FALSE, skewness=FALSE, kurtosis=FALSE){
+plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue", "varianceGain"), ticker="GOOG", portefe="AC.PA ACA.PA", nomb="75 25", from="2013-01-01", to=Sys.time(), current=FALSE, moyenne=FALSE, variance=FALSE, max=FALSE, min=FALSE){
 	type <- match.arg(type);
 	myplot <- switch(type,
 		smoothplot = smoothplot(portefe, nomb, ticker, from, to),
@@ -49,15 +49,17 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		var<-getVariance(ticker, from, to)
 		myplot <- myplot + geom_label(x=-Inf,y = (moyenne/1.1), size=4, label = paste("Variance:", var), hjust = -1, vjust = -0.5, color="blue");	
 		}
-		if(isTRUE(skewness)){
-		moyenne <- getMoyenne(ticker, from, to)
-		skewn<-getSkewness(ticker, from, to)
-		myplot <- myplot + geom_label(x=-Inf, y = (moyenne/1.15),  size=4, label = paste("Skewness:", skewn), hjust = -1, vjust = -0.5, color="blue");
-		}
-		if(isTRUE(kurtosis)){
-		moyenne <- getMoyenne(ticker, from, to)
-		kurto<-getKurtosis(ticker, from, to)	
-		myplot <- myplot + geom_label(x=-Inf, y = (moyenne/1.2),  size=4, label = paste("Kurtosis:", kurto), hjust = -1, vjust = -0.5, color="blue");	
+		
+		if(isTRUE(max)){
+		maxi <- getmax(ticker)
+		myplot <- myplot + geom_hline(yintercept = maxi, colour = "red", linetype = 2, size = 0.8);	
+		myplot <- myplot + geom_label(x=-Inf, y = maxi, size=4, label = paste("Valeur en temps réelle en devise locale:", maxi), hjust = -1, vjust = -0.5, color="red");
+	}
+	
+		if(isTRUE(min)){
+		mini <- getmin(ticker)
+		myplot <- myplot + geom_hline(yintercept = mini, colour = "red", linetype = 2, size = 0.8);	
+		myplot <- myplot + geom_label(x=-Inf, y = mini, size=4, label = paste("Valeur en temps réelle en devise locale:", mini), hjust = -1, vjust = -0.5, color="red");
 	}
 	
 	        
