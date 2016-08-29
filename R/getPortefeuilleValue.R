@@ -10,6 +10,7 @@ li<-1000000/n;
 myporte<-matrix( nrow=m , ncol=2);
 gaini<-numeric(m-1);
 cash<-0;
+a<-0;
 
 if(length(nomb)==0){
 for(i in 1:n){
