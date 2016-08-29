@@ -23,6 +23,6 @@ mydata<-data.frame(mydata);
 colnames(mydata)<-c("Name","var","gain");
 
 
-p <- ggplot(data=mydata, aes(gain, var))+ scale_size_area() + geom_point()
+p <- ggplot(data=mydata, aes(gain, var , size = var)) + geom_point()
 }
  
