@@ -29,7 +29,7 @@ mydat <- yahoodata(portefeu[i], from, to);
 ai<-floor(li/mydat$Close[m]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
-mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydatOpen[j]);
+mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydat$Open[j]);
 }
 }
 }
