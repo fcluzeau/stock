@@ -42,7 +42,8 @@ for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydat$Open[j]);
 }}}
-mydata$up <- mydata$Open < mydata$Close;
+for(j in 1:m){
+mydata$up[j] <- mydata$Open[j] < mydata$Close[j];}
 ggplot(data = mydata, ymin=lowpoint, aes(Date, ymin=Low, ymax=High)) + geom_ribbon(color="black", fill="green", alpha=0.5) + ylim(range(mydata$Close));  
 }
 }
