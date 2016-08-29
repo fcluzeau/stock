@@ -2,7 +2,7 @@ getmax<-function(ticker="GOOG",portefe="AC.PA ACA.PA",nomb="75 25", from = "2013
 b<-numeric(2);
 if(ticker!="portefeuille"){
 mydata<- yahoodata(ticker, from, to);
-m<-dim(mydata)[1];
+m<-dim(mydata)[1];}
 
 else{
 portefeu<-unlist(strsplit(portefe, " "));
