@@ -1,4 +1,4 @@
-getmax<-function(portefe="AC.PA ACA.PA",nomb="75 25", from = "2013-01-01", to=Sys.time()){
+getmax<-function(ticker="GOOG",portefe="AC.PA ACA.PA",nomb="75 25", from = "2013-01-01", to=Sys.time()){
 if(ticker!="portefeuille"){
 mydata<- yahoodata(ticker, from, to);
 m<-dim(mydata)[1];
