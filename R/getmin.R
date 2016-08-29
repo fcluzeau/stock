@@ -36,7 +36,7 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
 }
 mini<-min(mydata$Close, na.rm=T);
-gain<-(mini-mydata$Close[m])/(mydata$Close[m]);
+perte<-(mini-mydata$Close[m])/(mydata$Close[m]);
 b[1]<-mini;
-b[2]<-gain;
+b[2]<-perte;
 return(b);}
