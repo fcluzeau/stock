@@ -23,6 +23,6 @@ mydata<-data.frame(mydata);
 colnames(mydata)<-c("Name","var","gain");
 
 
-p <- ggplot(data=mydata, aes(gain, var)) + geom_point()
+p <- ggplot(data=mydata, aes(gain, var))+ scale_x_continuous(limits = c(-50, 50)) + scale_y_continous(limits= c(0,50)) + geom_point()
 }
  
