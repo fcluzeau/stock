@@ -51,15 +51,17 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		}
 		
 		if(isTRUE(max)){
-		maxi <- getmax(ticker)
+		maxi <- getmax(ticker,portefe,nomb, from, to)[1];
+		gain <- getmax(ticker,portefe,nomb, from, to)[2];
 		myplot <- myplot + geom_hline(yintercept = maxi, colour = "red", linetype = 2, size = 0.8);	
-		myplot <- myplot + geom_label(x=-Inf, y = maxi, size=4, label = paste("Valeur en temps réelle en devise locale:", maxi), hjust = -1, vjust = -0.5, color="red");
+		myplot <- myplot + geom_label(x=-Inf, y = maxi, size=4, label = paste("Valeur en temps réelle en devise locale:", maxi,"; Gain Maximal:", gain ), hjust = -1, vjust = -0.5, color="red");
 	}
 	
 		if(isTRUE(min)){
-		mini <- getmin(ticker)
+		mini <- getmin((ticker,portefe,nomb,, from, to)[1];
+		perte <- getmax(ticker,portefe,nomb, from, to)[2];
 		myplot <- myplot + geom_hline(yintercept = mini, colour = "red", linetype = 2, size = 0.8);	
-		myplot <- myplot + geom_label(x=-Inf, y = mini, size=4, label = paste("Valeur en temps réelle en devise locale:", mini), hjust = -1, vjust = -0.5, color="red");
+		myplot <- myplot + geom_label(x=-Inf, y = mini, size=4, label = paste("Valeur en temps réelle en devise locale:", mini, "; Perte maximale:",perte), hjust = -1, vjust = -0.5, color="red");
 	}
 	
 	        
