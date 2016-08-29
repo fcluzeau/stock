@@ -61,7 +61,7 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		mini <- round(getmin(ticker,portefe,nomb, from, to)[1],5);
 		perte <- round(getmin(ticker,portefe,nomb, from, to)[2],5);
 		myplot <- myplot + geom_hline(yintercept = mini, colour = "red", linetype = 2, size = 1.2);	
-		myplot <- myplot + geom_label(x=-Inf, y = mini, size=5, label = paste("Valeur minimale:", mini, "; Perte maximale:",perte,"%"), hjust = -1, vjust = 0.5, color="red");
+		myplot <- myplot + geom_label(x=-Inf, y = mini, size=5, label = paste("Valeur minimale:", mini, "; Perte maximale:",perte,"%"), hjust = -1, vjust = 1.5, color="red");
 	}
 	
 	        
