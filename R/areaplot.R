@@ -19,6 +19,8 @@ portefeu<-unlist(strsplit(portefe, " "));
 nomb<-unlist(strsplit(nomb, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
+mydata$Close<- 0;
+mydata$Open<- 0;
 n<-length(portefeu);
 li<-1000000/n;
 
@@ -42,8 +44,7 @@ for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydat$Open[j]);
 }}}
-for(j in 1:m){
-mydata$up[j] <- mydata$Open[j] < mydata$Close[j];}
+mydata$up <- mydata$Open < mydata$Close;
 ggplot(data = mydata, ymin=lowpoint, aes(Date, ymin=Low, ymax=High)) + geom_ribbon(color="black", fill="green", alpha=0.5) + ylim(range(mydata$Close));  
 }
 }
