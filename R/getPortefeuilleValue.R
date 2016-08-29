@@ -48,5 +48,14 @@ kur<-round(kurtosis(mydata$Close),5);
 cash<-round(1000000-mydata$Close[m],5);
 mydata$Close<-mydata$Close/1000;
 
-qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash))
+for(i in 2:dim(mydata)[1]){
+res<-log((mydata$Close[i]/mydata$Close[i-1]), base = exp(1));
+res<-res*res;
+a<-a+res;
+}
+a<-a*252/((dim(mydata)[1])-1);
+a<-sqrt(a);
+a<-(round(a,5));}
+
+qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash), ylab=paste("volatilité du portefeuille: "+ a))
 }
