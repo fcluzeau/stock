@@ -53,15 +53,15 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		if(isTRUE(max)){
 		maxi <- round(getmax(ticker,portefe,nomb, from, to)[1],5);
 		gain <- round(getmax(ticker,portefe,nomb, from, to)[2],5);
-		myplot <- myplot + geom_hline(yintercept = maxi, colour = "green", linetype = 2, size = 0.8);	
-		myplot <- myplot + geom_label(x=-Inf, y = maxi, size=4, label = paste("Valeur en temps réelle en devise locale:", maxi,"; Gain Maximal:", gain ,"%" ), hjust = -1, vjust = -0.5, color="red");
+		myplot <- myplot + geom_hline(yintercept = maxi, colour = "green", linetype = 2, size = 1.2);	
+		myplot <- myplot + geom_label(x=-Inf, y = maxi, size=5, label = paste("Valeur en temps réelle en devise locale:", maxi,"; Gain Maximal:", gain ,"%" ), hjust = -1, vjust = -0.5, color="green");
 	}
 	
 		if(isTRUE(min)){
 		mini <- round(getmin(ticker,portefe,nomb, from, to)[1],5);
 		perte <- round(getmin(ticker,portefe,nomb, from, to)[2],5);
-		myplot <- myplot + geom_hline(yintercept = mini, colour = "red", linetype = 2, size = 0.8);	
-		myplot <- myplot + geom_label(x=-Inf, y = mini, size=4, label = paste("Valeur en temps réelle en devise locale:", mini, "; Perte maximale:",perte,"%"), hjust = -1, vjust = -0.5, color="red");
+		myplot <- myplot + geom_hline(yintercept = mini, colour = "red", linetype = 2, size = 1.2);	
+		myplot <- myplot + geom_label(x=-Inf, y = mini, size=5, label = paste("Valeur en temps réelle en devise locale:", mini, "; Perte maximale:",perte,"%"), hjust = -1, vjust = -0.5, color="red");
 	}
 	
 	        
