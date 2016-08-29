@@ -36,7 +36,7 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
 }
 maxi<-as.numeric(max(mydata$Close, na.rm=T));
-gain<-(as.numeric(max)-as.numeric(mydata$Close[m]))/(as.numeric(mydata$Close[m]));
+gain<-(as.numeric(maxi)-as.numeric(mydata$Close[m]))/(as.numeric(mydata$Close[m]));
 b[1]<-maxi;
 b[2]<-gain;
 return(b);}
