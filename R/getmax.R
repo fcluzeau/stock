@@ -13,7 +13,7 @@ m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
 mydata$Colse<-0;
 n<-length(portefeu);
-li<-1000000/n;
+li<-1000/n;
 
 
 if(length(nomb)==0){
@@ -30,7 +30,7 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 else{
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
-ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
+ai<-floor(10*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
