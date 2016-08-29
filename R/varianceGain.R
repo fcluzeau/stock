@@ -7,12 +7,12 @@ gaint<-numeric(n);
 mydata<-matrix(nrow=n, ncol=3);
 
 for(i in 1:n){
-var[i]<-getVariance(portefeu[i], from, to);
+var[i]<-round(getVariance(portefeu[i], from, to),2);
 mydat<-yahoodata(portefeu[i], from, to);
   ase1 <- mydat$Close[1];
   ase2<- mydat$Close[m];
   gain<- (ase1-ase2)/ase2;
-  gain<-round(100*gain,5);
+  gain<-round(100*gain,2);
   gaint[i]<-gain;
   mydata[i,1]<-portefeu[i];
   mydata[i,2]<-as.numeric(var[i]);
