@@ -3,15 +3,15 @@ b<-numeric(2);
 if(ticker!="portefeuille"){
 mydata<- yahoodata(ticker, from, to);
 m<-dim(mydata)[1];
-maxi<-max(mydata$Value, na.rm=T);
-gain<-(max-mydata$Value[m])/(mydata$Value[m]);}
+maxi<-max(mydata$Close, na.rm=T);
+gain<-(max-mydata$Close[m])/(mydata$Close[m]);}
 
 else{
 portefeu<-unlist(strsplit(portefe, " "));
 nomb<-unlist(strsplit(nomb, " "));
 m<-dim(yahoodata(portefeu[1], from, to))[1];
 mydata<-yahoodata(portefeu[1], from, to);
-mydata$Value<-0;
+mydata$Close<-0;
 n<-length(portefeu);
 li<-1000/n;
 
@@ -19,9 +19,9 @@ li<-1000/n;
 if(length(nomb)==0){
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
-ai<-floor(li/mydat$Value[m]);
+ai<-floor(li/mydat$Close[m]);
 for(j in 1:m){
-mydata$Value[j]<-as.numeric(mydata$Value[j])+ai*as.numeric(mydat$Value[j]);
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 
 }
 }
@@ -32,11 +32,11 @@ for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
 ai<-floor(10*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
-mydata$Value[j]<-as.numeric(mydata$Value[j])+ai*as.numeric(mydat$Value[j]);
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
 }
-maxi<-as.numeric(max(mydata$Value, na.rm=T));
-gain<-(as.numeric(maxi)-as.numeric(mydata$Value[m]))/(as.numeric(mydata$Value[m]));
+maxi<-as.numeric(max(mydata$Close, na.rm=T));
+gain<-(as.numeric(maxi)-as.numeric(mydata$Close[m]))/(as.numeric(mydata$Close[m]));
 b[1]<-maxi;
 b[2]<-gain;
 return(b);}
