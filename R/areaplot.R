@@ -27,10 +27,9 @@ if(length(nomb)==0){
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
 ai<-floor(li/mydat$Close[m]);
-mydat$up <- mydat$Open < mydat$Close;
 for(j in 1:m){
-mydata$up[j]<-as.numeric(mydata$up[j])+ai*as.numeric(mydat$up[j]);
-
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
+mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydatOpen[j]);
 }
 }
 }
@@ -38,11 +37,12 @@ mydata$up[j]<-as.numeric(mydata$up[j])+ai*as.numeric(mydat$up[j]);
 else{
 for(i in 1:n){
 mydat <- yahoodata(portefeu[i], from, to);
-mydat$up <- mydat$Open < mydat$Close;
 ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
-mydata$up[j]<-as.numeric(mydata$up[j])+ai*as.numeric(mydat$up[j]);
+mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
+mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydatOpen[j]);
 }}}
+mydata$up <- mydata$Open < mydata$Close;
 ggplot(data = mydata, ymin=lowpoint, aes(Date, ymin=Low, ymax=High)) + geom_ribbon(color="black", fill="green", alpha=0.5) + ylim(range(mydata$Close));  
 }
 }
