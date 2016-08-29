@@ -45,6 +45,5 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydat$Open[j]);
 }}}
 mydata$up <- mydata$Open < mydata$Close;
-ggplot(data = mydata, ymin=lowpoint, aes(Date, ymin=500, ymax=2000)) + geom_ribbon(color="black", fill="green", alpha=0.5) + ylim(range(mydata$Close));  
-}
+ggplot(data=mydata, aes(Date, Close, ymin=Low, ymax=High, color=up)) + geom_linerange() + theme(legend.position="none");}
 }
