@@ -55,7 +55,7 @@ a<-a+res;
 }
 a<-a*252/((dim(mydata)[1])-1);
 a<-sqrt(a);
-a<-(round(a,5));}
+a<-(round(a,5));
 
 qplot(Date, Close, data=mydata, geom = c("line", "smooth"), xlab=paste("Gain du Capital:",gain,"%","; moyenne arithmétique mensuelle du rendement:", moyenneredm,"%","; skewness:", skewn,"; kurtosis:", kur,"cash:",cash), ylab=paste("volatilité du portefeuille: ", a))
 }
