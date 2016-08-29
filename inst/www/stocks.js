@@ -121,6 +121,18 @@ Ext.onReady(function() {
         enableToggle: true,
         text: "Variance",
         iconCls: 'chartIcon'
+},{
+        xtype: "button",
+        id: "maxBtn",
+        enableToggle: true,
+        text: "Maximum",
+        iconCls: 'chartIcon'
+},{
+        xtype: "button",
+        id: "minBtn",
+        enableToggle: true,
+        text: "Minimum",
+        iconCls: 'chartIcon'
 },{// ajout des textfields
         xtype: 'textfield',
         id: 'action',
@@ -219,11 +231,17 @@ Ext.onReady(function() {
    Ext.getCmp("varianceBtn").on("click", function(){
     loadplot();
 });
-  
+  Ext.getCmp("maxBtn").on("click", function(){
+    loadplot();
+  });
+   Ext.getCmp("minBtn").on("click", function(){
+    loadplot();
+  });
  
   Ext.getCmp("graphtype").on("select", function(){
     loadplot();
   });
+  
   
   function addWorkspace(symbol){
     workspacePanel.add({
@@ -236,6 +254,8 @@ Ext.onReady(function() {
         current : Ext.getCmp("currentBtn").pressed,
         moyenne : Ext.getCmp("moyenneBtn").pressed,
         variance : Ext.getCmp("varianceBtn").pressed,
+        max : Ext.getCmp("maxBtn").pressed,
+        min : Ext.getCmp("minBtn").pressed,
         start : Ext.getCmp("startdate").picker.getValue(),
         end : Ext.getCmp("enddate").picker.getValue()
        }
@@ -253,6 +273,8 @@ Ext.onReady(function() {
       Ext.getCmp("currentBtn").toggle(data.current); 
       Ext.getCmp("moyenneBtn").toggle(data.moyenne);
       Ext.getCmp("varianceBtn").toggle(data.variance);
+      Ext.getCmp("minBtn").toggle(data.min);
+      Ext.getCmp("minBtn").toggle(data.min);
       updatestart(data.start);
       updateend(data.end);
     }
@@ -269,6 +291,8 @@ Ext.onReady(function() {
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
     var variance = Ext.getCmp("varianceBtn").pressed;
+    var min = Ext.getCmp("minBtn").pressed;
+    var max = Ext.getCmp("maxBtn").pressed;
     
     //don't plot help tab
     if(symbol == "Help"){
@@ -295,6 +319,8 @@ Ext.onReady(function() {
       current : current,
       moyenne : moyenne,
       variance : variance,
+      min : min,
+      max : max,
     }).fail(function(){
       if(symbol=="portefeuille"){
         alert("Avez vous entré les actions dans le portefeuille, choisi le bon type de graphe, ou les bons symboles?" + req.responseText)
