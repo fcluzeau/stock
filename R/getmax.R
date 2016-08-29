@@ -1,4 +1,5 @@
 getmax<-function(ticker="GOOG",portefe="AC.PA ACA.PA",nomb="75 25", from = "2013-01-01", to=Sys.time()){
+b<-numeric(2);
 if(ticker!="portefeuille"){
 mydata<- yahoodata(ticker, from, to);
 m<-dim(mydata)[1];
@@ -36,5 +37,7 @@ mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }
 maxi<-max(mydata$Close, na.rm=T);
 gain<-(max-mydata$Close[m])/(mydata$Close[m]);
-return(maxi,gain);}
+b[1]<-maxi;
+b[2]<-gain;
+return(b);}
 
