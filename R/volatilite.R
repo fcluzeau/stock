@@ -10,4 +10,4 @@ a<-a+res;
 }
 a<-a*252/((dim(mydata)[1])-1);
 a<-sqrt(a);
-return(a);}
+return(round(a,5));}
