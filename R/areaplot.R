@@ -40,7 +40,7 @@ mydat <- yahoodata(portefeu[i], from, to);
 ai<-floor(10000*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
-mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydatOpen[j]);
+mydata$Open[j]<-as.numeric(mydata$Open[j])+ai*as.numeric(mydat$Open[j]);
 }}}
 mydata$up <- mydata$Open < mydata$Close;
 ggplot(data = mydata, ymin=lowpoint, aes(Date, ymin=Low, ymax=High)) + geom_ribbon(color="black", fill="green", alpha=0.5) + ylim(range(mydata$Close));  
