@@ -3,8 +3,6 @@ b<-numeric(2);
 if(ticker!="portefeuille"){
 mydata<- yahoodata(ticker, from, to);
 m<-dim(mydata)[1];
-maxi<-max(mydata$Close, na.rm=T);
-gain<-(max-mydata$Close[m])/(mydata$Close[m]);}
 
 else{
 portefeu<-unlist(strsplit(portefe, " "));
