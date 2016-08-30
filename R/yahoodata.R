@@ -31,5 +31,4 @@ yahoodata <- function(ticker, from, to){
   
   mydata$Date <- as.Date(mydata$Date);
   
-  return(mydata);
-}
+  return(mydata)}
