@@ -27,4 +27,4 @@ for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
 
-return(mydata)}
+return(mydata);}
