@@ -1,7 +1,7 @@
 interpolation<-function(portefe="ACA.PA AC.PA",nomb="75 25", deg="3", ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
 if(length(deg)==0){
 deg<-"3";}
-if(as.numeric(deg)){deg<-"3";}
+if(as.numeric(deg)<2){deg<-"3";}
 deg<-as.numeric(deg)
 
 if(ticker!="portefeuille"){
