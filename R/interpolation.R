@@ -1,4 +1,4 @@
-interpolation<-function(ticker = "GOOG", portefe="ACA.PA AC.PA",nomb="75 25", from = "2013-01-01", to=Sys.time(), deg="3"){
+interpolation<-function(portefe="ACA.PA AC.PA",nomb="75 25", deg="3", ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
 if( ticker!= "portefeuille"){
 if(length(deg)==0){deg<-30}
 deg<-as.numeric(deg);
