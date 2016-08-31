@@ -15,5 +15,5 @@ sample1 <- data.frame(mydat, mydato);
 fit <- lm(sample1$mydato ~ poly(sample1$mydat, deg, raw=TRUE));
 }
 m<-length(sample1$mydat);
-plot(sample1$mydat, sample1$mydato, type="l", lwd=floor(m/10))
-points(sample1$mydat, predict(fit), type="l", col="blue", lwd=floor(m/10))}
+plot(sample1$mydat, sample1$mydato, type="l", lwd=floor(2))
+points(sample1$mydat, predict(fit), type="l", col="blue", lwd=floor(2))}
