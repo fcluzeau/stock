@@ -1,13 +1,17 @@
 interpolation<-function(portefe="ACA.PA AC.PA",nomb="75 25", deg="3", ticker = "GOOG", from = "2013-01-01", to=Sys.time()){
-if( ticker!= "portefeuille"){
-if(length(deg)==0){deg<-30}
-deg<-as.numeric(deg);
+if(length(n)==0){
+n<-"1";}
+n<-as.numeric(n)
+
+if(ticker!="portefeuille"){
 mydata <- yahoodata(ticker, from, to);
-  vol<-volatilite(ticker, from, to);
-  qplot(Date, Close, data = mydata, xlab=paste("Votilité de l'action ",vol),ylab= ticker)+geom_smooth(span = deg/100);  
-}
+mydat<-numeric(dim(mydata)[1]);
+mydato<-numeric(dim(mydata)[1]);
+for(i in 1:dim(mydata)[1]){
+mydat[i]<-(i-1);}
+mydato<-mydata$Value;
 
-else{
-getPortefeuilleValue(portefe, nomb, from, to);}
-
+sample1 <- data.frame(mydat, mydato);
+fit <- lm(sample1$mydato ~ poly(sample1$mydat, n, raw=TRUE));
 }
+points(sample1$mydat, predict(fit), type="l", col="blue", lwd=floor(n/10))}
