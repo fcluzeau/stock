@@ -6,4 +6,4 @@ for(i in 1:dim(mydata)[1]){
 mydata$Date[i]<-(i-1);}
 fit <- lm(mydata$Value ~ poly(mydata$Date, n, raw=TRUE));
 }
-return(fit)}
+plot(mydata$Date, mydata$Value, type="l", lwd=floor(n/10))+points(mydata$Date, predict(fit), type="l", col="blue", lwd=floor(n/10))}
