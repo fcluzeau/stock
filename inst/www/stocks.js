@@ -75,6 +75,7 @@ Ext.onReady(function() {
             {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
             {"fun":"varianceGain","name":"PORTEFEUILLE: Variance/Gain des actions du portefeuille"},
             {"fun":"interpolation","name":"ACTION: Interpolation"},
+            {"fun":"interpolation2","name":"ACTION: Interpolation2"},
           ]          
         },
         queryMode: 'local',
