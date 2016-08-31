@@ -23,7 +23,7 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		getPortefeuilleValue = getPortefeuilleValue(portefe, nomb, from, to),
 		varianceGain = varianceGain(portefe, from, to),
 		interpolation = interpolation(portefe, nomb,deg, ticker, from, to),
-		interpolation2 = interpolattion2(portefe, nomb, deg, ticker, from, to),
+		interpolation2 = interpolation2(portefe, nomb, deg, ticker, from, to),
 		stop("Unknown plot type:", type)
 	);
 	if(type=="smoothplot"){myplot}
