@@ -5,6 +5,8 @@ n<-as.numeric(n);
 if(ticker!="portefeuille"){
 mydata <- yahoodata(ticker, from, to);
 for(i in 1:dim(mydata)[1]){
+mydata$Date<-"0";
+mydata$Date<-as.numeric(mydata$Date);
 mydata$Date[i]<-(i-1);}
 fit <- lm(mydata$Value ~ poly(mydata$Date, n, raw=TRUE));
 }
