@@ -74,6 +74,7 @@ Ext.onReady(function() {
             {"fun":"plotDensityPortefeuilleByShare","name":"PORTEFEUILLE: Densité de la Plus-Value par Action"},
             {"fun":"getPortefeuilleValue","name":"PORTEFEUILLE: Valeur du Portefeuille"},
             {"fun":"varianceGain","name":"PORTEFEUILLE: Variance/Gain des actions du portefeuille"},
+            {"fun":"interpolation","name":"ACTION: Interpolation"},
           ]          
         },
         queryMode: 'local',
@@ -133,7 +134,13 @@ Ext.onReady(function() {
         enableToggle: true,
         text: "Minimum",
         iconCls: 'chartIcon'
-},{// ajout des textfields
+},{
+        xtype: 'textfield',
+        id: 'degre',
+        fieldLabel: 'Degré du polynome',
+        value:"",
+        allowBlank: true
+    },{// ajout des textfields
         xtype: 'textfield',
         id: 'action',
         fieldLabel: 'Actions du Portefeuille',
@@ -287,6 +294,7 @@ Ext.onReady(function() {
     var type = Ext.getCmp("graphtype").getValue();
     var portefe = Ext.getCmp("action").getValue();
     var nomb  = Ext.getCmp("nombre").getValue();
+    var deg = Ext.getCmp("degre").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
@@ -312,6 +320,7 @@ Ext.onReady(function() {
     var req = $("#" + id + "-innerCt").rplot("plotwrapper", {
       portefe : portefe,
       nomb : nomb,
+      deg : deg,
       ticker : symbol,
       from : datetostring(from), 
       to : datetostring(to), 
