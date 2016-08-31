@@ -9,4 +9,4 @@ for(i in 1:dim(mydata)[1]){
 mydat[i]<-(i-1);}
 fit <- lm(mydata$Value ~ poly(mydat, n, raw=TRUE));
 }
-plot(mydat, mydata$Value, type="l", lwd=floor(n/10))+points(mydata$Date, predict(fit), type="l", col="blue", lwd=floor(n/10))}
+plot(mydat, mydata$Value, type="l", lwd=floor(n/10))+points(mydat, predict(fit), type="l", col="blue", lwd=floor(n/10))}
