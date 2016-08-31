@@ -1,7 +1,7 @@
 interpolation<-function(ticker = "GOOG", portefe="ACA.PA AC.PA",nomb="75 25", from = "2013-01-01", to=Sys.time(), n="3"){
 if(length(n)==0){
 n<-"1";}
-n<-as.numeric(n);
+n<-as.numeric(as.character(n))
 
 if(ticker!="portefeuille"){
 mydata <- yahoodata(ticker, from, to);
