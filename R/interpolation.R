@@ -1,13 +1,17 @@
 interpolation<-function(ticker = "GOOG", portefe="ACA.PA AC.PA",nomb="75 25", from = "2013-01-01", to=Sys.time(), n="3"){
 if(length(n)==0){
 n<-"1";}
-n<-as.numeric(as.character(n))
+n<-as.numeric(n)
 
 if(ticker!="portefeuille"){
 mydata <- yahoodata(ticker, from, to);
 mydat<-numeric(dim(mydata)[1]);
+mydato<-numeric(dim(mydata)[1]);
 for(i in 1:dim(mydata)[1]){
 mydat[i]<-(i-1);}
-fit <- lm(mydata$Close ~ poly(mydat, n, raw=TRUE));
+mydato<-mydata$Value;
+
+sample1 <- data.frame(mydat, mydato);
+fit <- lm(sample1$mydato ~ poly(sample1$mydat, n, raw=TRUE));
 }
-plot(mydat, mydata$Close, type="l", lwd=floor(n/10))+points(mydat, predict(fit), type="l", col="blue", lwd=floor(n/10))}
+plot(sample1$mydat, sample1$mydat0, type="l", lwd=floor(n/10))+points(sample1$mydat, predict(fit), type="l", col="blue", lwd=floor(n/10))}
