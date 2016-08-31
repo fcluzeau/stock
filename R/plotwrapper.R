@@ -13,7 +13,7 @@
 plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue", "varianceGain","interpolation"), ticker="GOOG", portefe="AC.PA ACA.PA", nomb="75 25", from="2013-01-01", to=Sys.time(), deg="3", current=FALSE, moyenne=FALSE, variance=FALSE, max=FALSE, min=FALSE){
 	type <- match.arg(type);
 	myplot <- switch(type,
-		smoothplot = smoothplot(portefe, nomb, ticker, from, to),
+		smoothplot = smoothplot(portefe, nomb, deg, ticker, from, to),
 		highlowplot = highlowplot(ticker, from, to),
 		areaplot = areaplot(ticker, portefe, nomb, from, to),
 		plotDensity = plotDensity(ticker, from, to),
