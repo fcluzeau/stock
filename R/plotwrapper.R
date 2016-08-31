@@ -10,10 +10,10 @@
 #' @param current include the current price of this stock. TRUE/FALSE.
 #' @import ggplot2
 #' @export
-plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue", "varianceGain","interpolation"), ticker="GOOG", portefe="AC.PA ACA.PA", nomb="75 25", from="2013-01-01", to=Sys.time(), deg="3", current=FALSE, moyenne=FALSE, variance=FALSE, max=FALSE, min=FALSE){
+plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDensity","getPlotCapitalGain", "densityGain","plotDensityPortefeuilleByShare", "getPortefeuilleValue", "varianceGain","interpolation","interpolation2"), ticker="GOOG", portefe="AC.PA ACA.PA", nomb="75 25", from="2013-01-01", to=Sys.time(), deg="3", current=FALSE, moyenne=FALSE, variance=FALSE, max=FALSE, min=FALSE){
 	type <- match.arg(type);
 	myplot <- switch(type,
-		smoothplot = smoothplot(portefe, nomb, deg, ticker, from, to),
+		smoothplot = smoothplot(portefe, nomb, ticker, from, to),
 		highlowplot = highlowplot(ticker, from, to),
 		areaplot = areaplot(ticker, portefe, nomb, from, to),
 		plotDensity = plotDensity(ticker, from, to),
@@ -23,6 +23,7 @@ plotwrapper <- function(type=c("smoothplot", "highlowplot", "areaplot", "plotDen
 		getPortefeuilleValue = getPortefeuilleValue(portefe, nomb, from, to),
 		varianceGain = varianceGain(portefe, from, to),
 		interpolation = interpolation(portefe, nomb,deg, ticker, from, to),
+		interpolation2 = interpolattion2(portefe, nomb, deg, ticker, from, to),
 		stop("Unknown plot type:", type)
 	);
 	if(type=="smoothplot"){myplot}
