@@ -3,8 +3,10 @@ b<-numeric(2);
 if(ticker!="portefeuille"){
 mydata<- yahoodata(ticker, from, to);
 m<-dim(mydata)[1];
-maxi<-max(mydata$Close, na.rm=T);
-gain<-(max-mydata$Close[m])/(mydata$Close[m]);}
+mini<-min(mydata$Close, na.rm=T);
+perte<-(mini-mydata$Close[m])/(mydata$Close[m]);
+b[1]<-mini;
+b[2]<-100*perte;}
 
 else{
 portefeu<-unlist(strsplit(portefe, " "));
@@ -34,9 +36,10 @@ ai<-floor(10*as.numeric(nomb[i])/mydat[m,2]);
 for(j in 1:m){
 mydata$Close[j]<-as.numeric(mydata$Close[j])+ai*as.numeric(mydat$Close[j]);
 }}}
-}
 mini<-min(mydata$Close, na.rm=T);
 perte<-(mini-mydata$Close[m])/(mydata$Close[m]);
 b[1]<-mini*1000/mydata$Close[m];
 b[2]<-100*perte;
+}
+
 return(b);}
