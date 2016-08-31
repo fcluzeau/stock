@@ -14,4 +14,4 @@ mydato<-mydata$Value;
 sample1 <- data.frame(mydat, mydato);
 fit <- lm(sample1$mydato ~ poly(sample1$mydat, n, raw=TRUE));
 }
-plot(sample1$mydat, sample1$mydat0, type="l", lwd=floor(n/10))+points(sample1$mydat, predict(fit), type="l", col="blue", lwd=floor(n/10))}
+points(sample1$mydat, predict(fit), type="l", col="blue", lwd=floor(n/10))}
