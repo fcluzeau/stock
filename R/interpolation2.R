@@ -4,7 +4,7 @@ if(length(deg)==0){deg<-30}
 deg<-as.numeric(deg);
 mydata <- yahoodata(ticker, from, to);
   vol<-volatilite(ticker, from, to);
-  qplot(Date, Close, data = mydata, geom =c("line","smooth"), xlab=paste("Votilité de l'action ",vol),ylab= ticker);  
+  qplot(Date, Close, data = mydata, xlab=paste("Votilité de l'action ",vol),ylab= ticker)+geom_smooth(span = deg/100);  
 }
 
 else{
