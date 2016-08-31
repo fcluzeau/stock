@@ -9,7 +9,7 @@ mydat<-numeric(dim(mydata)[1]);
 mydato<-numeric(dim(mydata)[1]);
 for(i in 1:dim(mydata)[1]){
 mydat[i]<-(i-1);
-mydato[i]<-mydata$Close[(dim(mydata)[1])-i];}
+mydato[i]<-mydata$Close[(dim(mydata)[1])-i+1];}
 
 sample1 <- data.frame(mydat, mydato);
 fit <- lm(sample1$mydato ~ poly(sample1$mydat, deg, raw=TRUE));
