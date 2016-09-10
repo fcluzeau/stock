@@ -47,7 +47,7 @@ ase1 <- mydato$Close[1];
   gainf<-numeric(floor((m-1)/20));
 for(i in 1:m-1){
 if((i/20)==floor(i/20)){
-gainf[i/20]<- 100*((mydata[i+1,2]-mydata[i,2])/mydata[i+1,2]);
+gainf[i/20]<- 100*((mydata[i,2]-mydata[i+1,2])/mydata[i+1,2]);
 
 }}
 moyenneredm<-round(mean(gainf),5);
