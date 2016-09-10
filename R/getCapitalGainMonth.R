@@ -3,7 +3,6 @@ getCapitalGainMonth <- function(ticker = "GOOG", from = "2013-01-01", to=Sys.tim
 mydata <- yahoodata(ticker, from, to);
 names(mydata) <- c("Symbol","Value","Date","Time","Name");
 num<-dim(mydata)[1];
-gain<-matrix(ncol=2,nrow=num-1);
 gainf<-matrix(ncol=2,nrow=floor((num-1)/20));
 for(i in 1:num-1){
 if((i/20)==floor(i/20)){
