@@ -45,7 +45,7 @@ ase1 <- mydato$Close[1];
   gain<-round(100*gain,5);
   
   gainf<-numeric(floor((m-1)/20));
-for(i in 1:num-1){
+for(i in 1:m-1){
 if((i/20)==floor(i/20)){
 gainf[i/20]<- 100*((mydata[i+1,2]-mydata[i,2])/mydata[i+1,2]);
 
