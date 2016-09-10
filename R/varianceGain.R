@@ -20,9 +20,11 @@ mydat<-yahoodata(portefeu[i], from, to);
 }
 
 mydata<-data.frame(mydata);
+
 colnames(mydata)<-c("Name","var","gain");
+mydata$gain<-sort(mydata$gain);
 head(mydata);
 
-p <- ggplot(data=mydata, aes(x=gain, y=var))+coord_cartesian(ylim=c(0, 20))+geom_point(aes(gain, var, size = 0))
+p <- ggplot(data=mydata, aes(x=gain, y=var))+geom_point(aes(gain, var, size = 0))
 }
  
