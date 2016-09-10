@@ -23,6 +23,6 @@ mydata<-data.frame(mydata);
 colnames(mydata)<-c("Name","var","gain");
 head(mydata);
 
-p <- ggplot(data=mydata, aes(x=gain, y=var)) 
+p <- ggplot(data=mydata, aes(x=gain, y=var))+coord_cartesian(ylim=c(0, 20))+geom_point(aes(x, y, size = 0))
 }
  
