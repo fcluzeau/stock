@@ -20,9 +20,8 @@ mydat<-yahoodata(portefeu[i], from, to);
 }
 
 mydata<-data.frame(mydata);
-
 colnames(mydata)<-c("Name","var","gain");
-head(mydata);
+
 
 p <- ggplot(data=mydata, aes( x=gain, y=var))+geom_point()
 }
