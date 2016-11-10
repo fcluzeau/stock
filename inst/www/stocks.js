@@ -153,6 +153,12 @@ Ext.onReady(function() {
         fieldLabel: 'Proportions des Actions',
         value:"",
         allowBlank: true
+    },{
+        xtype: 'textfield',
+        id: 'infla',
+        fieldLabel: 'Taux d actualisation moyen par an',
+        value:"",
+        allowBlank: true
     }]
   });
 
@@ -296,6 +302,7 @@ Ext.onReady(function() {
     var portefe = Ext.getCmp("action").getValue();
     var nomb  = Ext.getCmp("nombre").getValue();
     var deg = Ext.getCmp("degre").getValue();
+    var infla = Ext.getCmp("infla").getValue();
     var current = Ext.getCmp("currentBtn").pressed;
     var gain = Ext.getCmp("currentBtn").pressed;
     var moyenne = Ext.getCmp("moyenneBtn").pressed;
@@ -322,6 +329,7 @@ Ext.onReady(function() {
       portefe : portefe,
       nomb : nomb,
       deg : deg,
+      infla: infla,
       ticker : symbol,
       from : datetostring(from), 
       to : datetostring(to), 
